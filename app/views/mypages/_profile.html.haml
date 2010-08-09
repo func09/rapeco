@@ -1,0 +1,19 @@
+/ begin profile box
+.profileBox
+  %h3.header プロフィール
+  .box
+    .profileIcon
+      = image_tag user.profile_image_url
+    .profileLogin
+      = "@#{user.login}"
+  .box
+    = user.description
+  .box
+    %div= "ペコペコにした数 : #{user.yums.sum(:yummy_count)}"
+    %div= "閲覧された数 : #{user.yums.sum(:view_count)}"
+  %hr
+  .box
+    .button= link_to "ペコフォト(#{user.yums.enables.count})", mypage_path
+    .button= link_to "コメント(#{user.receive_comments.count})", mypage_comments_path
+    
+/ end profile box

@@ -1,0 +1,116 @@
+/* Header */
+
+#header {
+  .impotant_notice {
+    margin: 4px 0px;
+    padding: 0.5em 1em;
+    @include border-radius(5px,5px,5px,5px);
+    background: #EAE3D1;
+  }
+}
+
+#header {
+  margin-top: 10px;
+  position: relative;
+  }
+  #header h1 {
+    margin: 0px;
+    }
+    #header h1 .subtitle {
+      position: absolute;
+      top: 1em;
+      left: 210px;
+      font-size: 12px;
+      }
+  #header #userNav {
+    position: absolute;
+    padding: 10px;
+    top: 0px;
+    right: 0px;
+    }
+  #header #siteStat {
+    position: absolute;
+    padding: 10px;
+    top: 35px;
+    right: 0px;
+    font-size:11px;
+    }
+
+.pages.home .mainMenuBox ul#mainNav li.home,
+.pages.about .mainMenuBox ul#mainNav li.about,
+.pages.search .mainMenuBox ul#mainNav li.search,
+.yums .mainMenuBox ul#mainNav li.yums,
+.mypages .mainMenuBox ul#mainNav li.mypage,
+.users .mainMenuBox ul#mainNav li.users { background: #5A534B; }
+
+.mainMenuBox {
+  background: #393536;
+  @include border-radius(5px, 5px, 0, 0);
+  padding: 8px;
+  padding-bottom: 0px;
+  ul#mainNav {
+    list-style: none;
+    margin: 0;
+    padding:0;
+    li {
+      float: left;
+      margin-right: 0.5em;
+      background: #48413C;
+      @include border-radius(5px, 5px, 0, 0);
+      
+      &.side {
+        float: right;
+      }
+      
+      &:hover {
+        background: #5A534B;
+      }
+      
+      a { 
+        display: block;
+        padding: 5px 15px;
+        color: #E8E6DD;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        &:hover {
+          color: #CCC;
+          }
+        } 
+      
+      }
+    }
+
+}
+
+.subMenuBox {
+  //background: #534C46;
+  background: #5A534B;
+  @include border-radius(0px, 0px, 4px, 4px);
+  padding: 4px 8px;
+  ul#subNav {
+    list-style: none;
+    margin: 0;
+    padding:0;
+    li {
+      float: left;
+      margin-right: 0.5em;
+      
+      a { 
+        display: block;
+        padding: 5px 5px;
+        color: #E8E6DD;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        &:hover {
+          color: #CCC;
+          }
+        } 
+      
+      }
+    }
+
+}
+
+

@@ -1,0 +1,2 @@
+module Admin::YumsHelper
+end

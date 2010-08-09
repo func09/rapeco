@@ -1,0 +1,31 @@
+/ beggin commentsBox
+.commentsBox
+  
+  %h3 コメントする
+  / begin comment-new
+  .comment-new
+    - form_for yum.comments.build, :url => yum_comments_path(yum) do |form|
+      = form.hidden_field :yum_id
+      %dl
+        %dd.cooment= form.text_area :comment
+        %dd.tweet
+          = form.check_box :will_tweet
+          = form.label :will_tweet, 'ツイッターにつぶやく'
+        %dd.submit= form.submit 'コメントを投稿する'
+  / end comment-new
+  
+  / begin comments
+  %ul.comments
+    - for comment in yum.comments
+      - unless comment.new_record?
+        %li.clearfix
+          .icon
+            = image_tag comment.user.profile_image_url, :class => 'icon48'
+          .comment
+            = link_to comment.user.login, user_path(comment.user)
+            = comment.comment
+            = "#{distance_of_time_in_words_to_now(comment.created_at)}前"
+  / end comments
+  
+/ end commentsBox
+

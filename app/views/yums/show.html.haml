@@ -1,0 +1,100 @@
+- title "#{@yum.text} - ラペコ 美味しそう！を共有するサービス"
+- content_for :submenu do
+  = render :partial => 'menu'
+- cache @cache_key, :expires_in => 5.minutes do
+  .backNav
+    %a(href="#" onclick="history.back(); return false;") &laquo; 前のページに戻る
+  
+  / begin pecoSection
+  .pecoSection
+    / begin mainBox
+    .mainBox
+      .pecoPhotoBox
+        %h2= auto_link(@yum.text, :all, :target => '_blank')
+        .pecoPhoto
+          = image_tag photo_url_with_yum(@yum, :size => :large)
+          
+      = render :partial => 'comments', :locals => {:yum => @yum}
+      
+      / begin tweets
+      %div
+        %div
+          %script(src="http://widgets.twimg.com/j/2/widget.js")
+          :javascript
+            new TWTR.Widget({
+              version: 2,
+              type: 'search',
+              search: '#{pecophoto_url(@yum)}',
+              interval: 6000,
+              title: '',
+              subject: 'このペコフォトに対するつぶやき',
+              width: 'auto',
+              height: 240,
+              theme: {
+                shell: {
+                  background: '#ccc',
+                  color: '#ffffff'
+                },
+                tweets: {
+                  background: '#ffffff',
+                  color: '#444444',
+                  links: '#1985b5'
+                }
+              },
+              features: {
+                scrollbar: true,
+                loop: false,
+                live: true,
+                hashtags: true,
+                timestamp: true,
+                avatars: true,
+                toptweets: true,
+                behavior: 'all'
+              }
+            }).render().start();
+      / end tweets
+    / end mainBox
+    / begin sideBox
+    .sideBox
+      
+      .metaBox
+        
+        .section
+          .profileIcon
+            = image_tag @yum.user.profile_image_url
+          .profileLogin
+            = "@#{link_to @yum.user.login, user_path(@yum.user)}"
+            %br
+            = "at #{distance_of_time_in_words_to_now(@yum.uploaded_at)}前"
+          
+        .section.counts
+          %span.count= "#{@yum.comments_count}<br />コメント"
+          %span.count= "#{@yum.yummy_count}<br />ペコペコ"
+          %span.count= "#{@yum.view_count}<br />ビュー"
+        .section
+          %span#btnPecopeco
+            = link_to 'ペコペコになった！', vote_yum_path(@yum), :method => :put
+        .section
+          %span#btnPecopeco
+            = link_to_retweet 'twitterにつぶやく', @yum
+        .section
+          %dl
+            %dt オリジナル画像のURL:
+            %dd= link_to @yum.photo_url, @yum.photo_url
+            %dt レポート:
+            %dd= link_to '食べられない写真を報告する', report_yum_path(@yum), :method => :put
+        %h3 最近の投稿
+        .box
+          - for yum in @yum.user.yums.recented.limited(12)
+            %a(href="#{yum_path(yum)}")
+              = image_tag photo_url_with_yum(yum, :size => :thumb), :class => 'pecophoto_icon'
+      
+    / end sideBox
+  / end pecoSection
+  :javascript
+    $(function(){
+      $('#comment_submit').attr('disabled', true);
+    });
+    $('#comment_comment').keyup(function(event){
+      $('#comment_submit').attr('disabled', ($(this).val() == '') ? true : false );
+    });

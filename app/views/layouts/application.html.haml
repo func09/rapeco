@@ -1,0 +1,90 @@
+!!!
+%html{:'xml:lang' => 'ja', :lang => 'ja'}
+  %head
+    %title= h(yield(:title)) || "ラペコ 美味しそう！を共有するサービス"
+    = stylesheet_link_tag 'application','main','jquery.jgrowl'
+    = stylesheet_link_tag 'style'
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'
+    = javascript_include_tag 'jquery.jgrowl'
+    = javascript_include_tag 'jquery.lazyload.mini'
+    = javascript_include_tag "http://platform.twitter.com/anywhere.js?id=#{TwitterAuth.config['oauth_consumer_key']}&v=1"
+    /[if IE]
+      = stylesheet_link_tag 'ie'
+      = javascript_include_tag 'http://html5shiv.googlecode.com/svn/trunk/html5.js'
+    /[if lte IE 7 ]
+      = stylesheet_link_tag 'ie7'
+      = javascript_include_tag 'IE7'
+    :javascript
+      $(function(){
+        $("img").lazyload({
+          placeholder : "/images/black.png",
+          effect : "fadeIn"
+        });
+        // get user nav
+        $('#userNav').load("#{html_user_nav_ajax_account_url}");
+        
+        // check logged in
+        $.getJSON("#{verify_logged_in_ajax_account_url}", function(json){
+          // alert("JSON Data: " + json.logged_in);
+          if (json.logged_in) {
+            $('#mainNav li.mypage').show();
+          }
+        });
+        
+      });
+    - if Rails.env == 'production'
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-845066-6']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    = yield(:head)
+  %body(class="#{controller_name} #{action_name}")
+      
+    #header
+      %h1
+        %a(href='/')= image_tag 'logo.png'
+        %p.subtitle
+          美味しそう！を共有しよう！
+      #userNav
+      / begin impotant notice
+      - if impotant_notice
+        .impotant_notice
+          重要なお知らせ：
+          = impotant_notice.body
+          = "（#{impotant_notice.created_at.to_s(:simple_date)}）"
+      / end impotant notice
+      
+      .mainMenuBox
+        %ul#mainNav
+          %li.home= link_to 'ホーム', root_path
+          %li.yums= link_to 'ペコフォト', hot_yums_path
+          %li.users= link_to 'ユーザー', hot_users_path
+          %li.about= link_to 'ラペコについて', about_path
+          %li.search= link_to '検索', search_path
+          %li.side= link_to 'ペコフォトを投稿', new_yum_path
+          %li.side.mypage(style='display:none;')= link_to 'マイページ', mypage_url
+      .subMenuBox
+        %ul#subNav
+          = yield(:submenu)
+      
+    #container(class="#{controller_name}-#{action_name}")
+      - flash.each do |name, msg|
+        %div(id="flash_#{name}")= msg
+      = yield
+      
+    #footer
+      &copy; 2010 rapeco.jp. Created By @func09, 
+      <a href="http://www.func09.com/wordpress">func09.com</a> 
+      = link_to 'お問い合わせ', contact_path
+    
+    :javascript
+      twttr.anywhere(onAnywhereLoad);
+      function onAnywhereLoad(twitter) {
+        twitter("div").hovercards();
+      };

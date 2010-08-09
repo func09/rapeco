@@ -1,0 +1,12 @@
+#homeContent h2 {
+  position: relative;
+  }
+
+#homeContent h2 .moreLink {
+  position: absolute;
+  right: 0px;
+  }
+
+ul.haraheriTweets li .tweetBox {
+  background: #111;
+  }

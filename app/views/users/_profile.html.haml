@@ -1,0 +1,20 @@
+/ begin profile box
+.profileBox
+  %h3.header プロフィール
+  .box
+    .profileIcon
+      = image_tag user.profile_image_url
+    .profileLogin
+      = "@#{user.login}"
+  .box
+    = user.description
+  .box
+    %div= "ペコフォトの数 : #{user.yums.enables.count}"
+    %div= "ペコペコにした数 : #{user.yums.sum(:yummy_count)}"
+    %div= "閲覧された数 : #{user.yums.sum(:view_count)}"
+  %h3 最近の投稿
+  .box
+    - for yum in user.yums.recented.limited(12)
+      %a(href="#{yum_path(yum)}")
+        = image_tag photo_url_with_yum(yum, :size => :thumb), :class => 'pecophoto_icon'
+/ end profile box

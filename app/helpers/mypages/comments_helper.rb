@@ -1,0 +1,2 @@
+module Mypages::CommentsHelper
+end

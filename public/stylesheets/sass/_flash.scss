@@ -1,0 +1,26 @@
+#flash_notice, 
+#flash_success, 
+#flash_error {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+#flash_notice {
+  background-color: #FFF6BF;
+  border: solid 1px #FFD324;
+  color: #514721;
+}
+
+#flash_error {
+  border: solid 1px #FBC2C4;
+  background: #FBE3E4;
+  color: #8A1F11;
+}
+
+#flash_success {
+  color: #264409;
+  background-color: #E6EFC2;
+  border: solid 1px #C6D880;
+}
+
+  

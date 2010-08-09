@@ -1,0 +1,33 @@
+#cse {
+  margin: 1em 0; }
+
+.gsc-control-cse {
+  min-height: 400px;
+  background: #FFF;
+  border: none;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
+input.gsc-input {
+  padding: 10px;
+  font-size: 2em;
+  width: 700px; }
+
+input.gsc-search-button {
+  padding: 10px; }
+
+.gs-title {
+  font-size: 1.1em; }
+
+.gsc-cursor-page {
+  float: left; }

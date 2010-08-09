@@ -1,0 +1,9 @@
+.DS_Store
+.bundle
+mkmf.log
+log/*.log
+tmp/**/*
+config/database.yml
+config/env.rb
+db/*.sqlite3
+db/schema.rb

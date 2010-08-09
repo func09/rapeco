@@ -1,0 +1,146 @@
+- title "ラペコ 美味しそう！を共有するサービス"
+- cache @cache_key, :expires_in => 5.minutes do
+  /
+    = Time.zone.now
+  :javascript
+    function login(){
+      window.location.href = '#{new_yum_path}';
+    }
+  
+  #homeContent
+    / begin pr image
+    /
+      %div
+        %img(src='/images/home_pr.png')
+    / end pr image
+    
+    / begin main
+    .main
+      / begin hotPecophoto
+      #hotPecophoto.section
+        %h2
+          今注目のペコフォト
+          %span.moreLink
+            = link_to 'もっと見る &raquo;', hot_yums_path
+        .thumbListBox
+          - @hot_yums.each_with_index do |yum,index|
+            = render :partial => '/yums/yum', :locals => {:yum => yum}
+      / end hotPecophoto
+      / begin recentPecophoto
+      #recentPecophoto.section
+        %h2
+          新着のペコフォト
+          %span.moreLink
+            = link_to 'もっと見る &raquo;', recent_yums_path
+        .thumbListBox
+          - @recent_yums.each_with_index do |yum,index| 
+            = render :partial => '/yums/yum', :locals => {:yum => yum}
+      / end recentPecophoto
+      
+      / begin Recent Comment
+      .recentComments
+        %h2 最新のコメント
+        %ul.comments
+          - for comment in @comments
+            %li.clearfix
+              .icon
+                = image_tag comment.user.profile_image_url, :class => 'icon36'
+              .comment
+                %div
+                  = link_to comment.user.login, user_path(comment.user)
+                  = comment.comment
+                .meta
+                  = "#{distance_of_time_in_words_to_now(comment.created_at)}前"
+                  = link_to 'コメント先のペコフォト', yum_path(comment.yum)
+      / end Recent Comment
+      
+    / end main
+    
+    / begin side
+    .side
+      
+      / begin Login Button
+      .section
+        %button.postPhotoButon(onclick="login();")
+          %img(src="http://a3.twimg.com/a/1271213136/images/fronts/logo.png" height="24px")
+          にログインして、<br />美味しそうな写真を<br />
+          %img(src="/images/logo.png" height="45px")
+          に投稿する
+      / end Login Button
+      
+      / begin Upload iPhone
+      .section
+        = link_to image_tag('/images/banner_iphone_up.png'), iphone_help_path
+      / end Upload iPhone
+      
+      / begin Notices
+      .section
+        %h2 お知らせ
+        %ul.news
+          - for notice in @notices
+            %li
+              %time(datetime="#{notice.published_at.to_s(:simple_date)}")
+                = notice.published_at.to_s(:simple_date)
+              .title= notice.title
+              .body= notice.body
+      / end Notices
+      
+      / begin Hot Users
+      .section
+        %h2 注目ユーザー
+        %table.hot-users
+          - @hot_users.each_with_index do |hot_user, index|
+            - rank = index + 1
+            %tr
+              %td.user-icon
+                = link_to image_tag(hot_user.profile_image_url), user_path(hot_user)
+              %td.user-info
+                = link_to hot_user.login, user_path(hot_user)
+                %br
+                = "#{hot_user.yums.enables.count}photos"
+                = "#{hot_user.yums.enables.sum(:yummy_count)}pecos"
+                = "#{hot_user.yums.enables.sum(:view_count)}views"
+              %td.rank= rank
+      / end Hot Users
+      
+      / begin Twitter Widget
+      %script(src="http://widgets.twimg.com/j/2/widget.js")
+      :javascript
+        new TWTR.Widget({
+          version: 2,
+          type: 'search',
+          search: '##{configatron.twitter.hashtag}',
+          interval: 6000,
+          title: 'リアルタイムラペコ',
+          subject: 'みんなのラペコ！',
+          width: 'auto',
+          height: 200,
+          theme: {
+            shell: {
+              background: '#a9cb74',
+              color: '#ffffff'
+            },
+            tweets: {
+              background: '#ffffff',
+              color: '#444444',
+              links: '#1985b5'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: true,
+            live: true,
+            hashtags: true,
+            timestamp: true,
+            avatars: true,
+            behavior: 'default'
+          }
+        }).render().start();
+      / end Twitter Widget
+      
+    / end side
+  :javascript
+    if($.browser.msie){
+      $('#homeContent .main .thumbBox:nth-child(3n)').css('margin-right','0px');
+    }
+    

@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'twitpic'
+require 'rubytter'
+require 'optparse'
+require "highline"
+
+username = nil
+password = nil
+message = nil
+file = nil
+screencapture = nil
+
+OptionParser.new do |o|
+  o.version = TwitPic::VERSION
+  o.banner = "Usage: #{o.program_name} [-u USERNAME -p PASSWORD -m MESSAGE] [FILE | -s]"
+  o.on('-u', '--username=USERNAME') {|v| username = v}
+  o.on('-p', '--password=PASSWORD') {|v| password = v}
+  o.on('-m', '--message=MESSAGE') {|v| message = v}
+  o.on('-s', '--screencapture') {|v| screencapture = true}
+  o.on('-c', '--conf=CONFNAME') { |v|
+    begin
+      conf = Pit.get v
+      username = conf["username"]
+      password = conf["password"]
+    rescue
+      puts 'You don\'t have pit module. Please install pit.'
+      puts 'for example: gem install pit'
+    end
+  }
+  o.permute!(ARGV)
+  file = ARGV.first
+  if file.nil? && screencapture.nil?
+    puts o.help
+    exit!
+  end
+end
+
+if file.nil? && screencapture
+  file = '/tmp/twitpic_screencapture.png'
+  File.delete(file) if File.exists?(file)
+  puts 'Please capture screen!'
+  system('screencapture', '-i', '-f', file) || system('import', file)
+  unless File.exists?(file)
+    puts 'Aboat!'
+    exit!
+  end
+end
+
+# try pit
+if username.nil? && password.nil?
+  begin
+    require 'pit'
+    puts 'Load twitter config from pit...'
+    config = Pit.get('twitter')
+    username = config['username']
+    password = config['password']
+  rescue LoadError
+  end
+end
+
+# try highline
+highline = HighLine.new
+username = highline.ask('USERNAME: ') unless username
+password = highline.ask('PASSWORD: ') {|q| q.echo = '*'} unless password
+message = highline.ask('MESSAGE: ') unless message
+
+puts 'Uploading...'
+url = TwitPic.new(username, password).upload(file)[:mediaurl]
+puts "  => \"#{url}\""
+
+message.strip!
+post_message = "#{message} #{url}"
+puts "Post to Twitter..."
+Rubytter.new(username, password).update(post_message) if message
+puts "  => \"#{post_message}\""

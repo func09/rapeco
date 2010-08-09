@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value
+
+# == Schema Information
+#
+# Table name: notices
+#
+#  id           :integer         primary key
+#  title        :string(255)     not null
+#  body         :text
+#  published_at :date            not null
+#  hidden       :boolean         default(FALSE)
+#  impotant     :boolean         default(FALSE)
+#  type         :string(255)     default("NoticeNew"), not null
+#  created_at   :timestamp
+#  updated_at   :timestamp
+#
+

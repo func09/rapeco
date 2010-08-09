@@ -1,0 +1,27 @@
+<div class='profileBox'>
+  
+  <div class="box">
+    <div class="profileIcon"><%= image_tag @user.profile_image_url %></div>
+    <div class="profileLogin">@<%= @user.login %></div>
+  </div>
+  
+  <div class="box">
+    <%- unless @user.url.blank? -%>
+      <div>Web : <%= link_to truncate(@user.url, 20), @user.url %></div>
+    <%- end -%>
+    <%- unless @user.location.blank? -%>
+      <div>場所 : <%= @user.location %></div>
+    <%- end -%>
+  </div>
+  
+  <div class="box">
+    <%= @user.description %>
+  </div>
+  
+  <div class="box">
+    <div>投稿したペコフォトの数 : <%= @user.yums.enables.count %></div>
+    <div>ペコペコにした数 : <%= @user.yums.sum(:yummy_count) %></div>
+    <div>閲覧された数 : <%= @user.yums.sum(:view_count) %></div>
+  </div>
+  
+</div><!--/profile-box-->

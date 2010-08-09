@@ -1,0 +1,17 @@
+- title "あなたのペコフォト - ラペコ 美味しそう！を共有するサービス"
+%h1 あなたのペコフォト
+= will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+
+.myContent
+  .main
+    .yumsBox
+      - if @yums.empty?
+        %p.advice= link_to '美味しそうな料理写真を投稿しましょう！', new_yum_path
+      - else
+        - @yums.each_with_index do |yum,index|
+          = render :partial => '/yums/yum', :locals => {:yum => yum, :rank => nil, :my => true}
+  .side
+    = render :partial => 'mypages/profile', :locals => {:user => current_user}
+
+= will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+

@@ -1,0 +1,28 @@
+- title "コメント - ラペコ 美味しそう！を共有するサービス"
+%h1 コメント
+= will_paginate(@comments, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+
+.myContent
+  .main
+    / begin Recent Comment
+    .recentComments
+      %ul.comments
+        - for comment in @comments
+          %li.clearfix
+            .icon
+              = image_tag comment.user.profile_image_url, :class => 'icon36'
+            .comment
+              %div
+                = link_to comment.user.login, user_path(comment.user)
+                = comment.comment
+              .meta
+                = "#{distance_of_time_in_words_to_now(comment.created_at)}前"
+                = link_to 'コメント先のペコフォト', yum_path(comment.yum)
+    / end Recent Comment
+    
+  .side
+    = render :partial => 'mypages/profile', :locals => {:user => current_user}
+
+
+      
+= will_paginate(@comments, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)

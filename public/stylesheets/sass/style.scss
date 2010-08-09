@@ -1,0 +1,23 @@
+@import 'mixin';
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	visibility: hidden;
+	height: 0.1px;
+	font-size: 0.1em;
+	line-height: 0;
+	clear: both;
+}
+
+.clearfix {
+	zoom: 100%;
+}
+
+@import "img";
+@import "flash";
+@import "header";
+@import "yums";
+@import "users";
+@import 'home';
+@import 'mypage';

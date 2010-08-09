@@ -1,0 +1,14 @@
+#cse(style="width: 100%;") Loading
+%script(src="http://www.google.com/jsapi" type="text/javascript")
+:javascript
+  google.load('search', '1', {language : 'ja'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('011845752542366067144:l5r8rw0vmje');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+= stylesheet_link_tag 'http://www.google.com/cse/style/look/default.css'
+= stylesheet_link_tag 'cse_extend.css'
+

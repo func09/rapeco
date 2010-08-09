@@ -1,0 +1,247 @@
+.thumbBox {
+  
+  float: left;
+  position: relative;
+  margin-right: 22px;
+  margin-bottom: 20px;
+  width: 150px;
+  background: #FFF;
+  @include border-radius(8px,8px,8px,8px);
+  
+  &:nth-child(5n) {
+    margin-right: 0px;
+  }
+
+  .meta {
+    padding: 8px;
+    height: 60px;
+    font-size: 11px;
+    color: #666;
+  }
+  
+  .delete {
+    padding: 10px;
+    font-size: 11px;
+    color: #666;
+    text-align: righ;
+    img {
+      vertical-align: middle;
+    }
+  }
+  
+  &.hot .rank {
+    font-size: 14px;
+    background: #E61841;
+  }
+  
+  .rank {
+    position: absolute;
+    top: 120px;
+    right: 5px;
+    padding: 5px;
+    min-width: 16px;
+    text-align: center;
+    @include border-radius(4px,4px,4px,4px);
+    background: #222;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 10px;
+  }
+  
+  .photoWrapper {
+    text-align: center;
+    background: #000;
+    width: 150px;
+    height: 150px;
+    @include border-radius(4px,4px,0px,0px);
+    .thumbPhoto {
+      img.thumb {
+        max-width: 150px;
+        max-height: 150px;
+      }
+      &:hover {
+        @include opacity(0.5);
+      }
+    }
+  }
+  
+}
+
+.pecoSection {
+  
+  margin: 10px 0;
+  
+  .mainBox {
+    float: left;
+    width: 550px;
+  }
+  
+  .sideBox {
+    float: right;
+    width: 280px;
+  }
+  
+}
+
+.pecoPhotoBox {
+  margin-bottom: 1em;
+  background: #FFF;
+  padding: 15px;
+  h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-family: 'ヒラギノ明朝 Pro W3','ＭＳ 明朝',Serif;
+    font-size: 180%;
+  }
+  .section {
+    margin: 5px 0px;
+  }
+  .counts {
+    text-align: center;
+    padding: 5px 10px;
+    background: #EEE;
+    @include border-radius(4px,4px,4px,4px);
+  }
+  @include border-radius(8px,8px,8px,8px);
+  .pecoPhoto {
+    background: #000;
+    margin: 0px -15px;
+    text-align: center;
+    min-height: 300px;
+    img {
+      max-width: 500px;
+      max-height: 500px;
+    }
+  }
+}
+
+
+// metabox
+
+.sideBox {
+  
+  .metaBox {
+    background: #FFF;
+    @include border-radius(8px,8px,8px,8px);
+    padding: 15px;
+    width: 250px;
+    
+    .profileIcon {
+      float: left;
+      margin-right: 10px;
+      width: 48px;
+      img {
+        max-width: 48px;
+        max-height: 48px;
+      }
+    }
+    
+    .profileLogin {
+      float: left;
+      padding: 0;
+      font-size: 14px;
+      font-weight: bold;
+      width: 190px;
+    }
+    
+    .section {
+      margin-bottom: 8px;
+    }
+    
+    .counts {
+      margin-right: -15px;
+      span.count {
+        margin-right: 5px;
+        float: left;
+        padding: 6px;
+        width: 67px;
+        display: block;
+        background: #EEE;
+        text-align: center;
+        font-weight: bold;
+        @include border-radius(4px,4px,4px,4px);
+      }
+    }
+    
+    dl {
+      margin: 0px;
+      dt {
+        margin-top: 12px;
+        font-weight: bold;
+        font-size: 12px;
+      }
+      dd {
+        margin-left: 12px;
+        font-size: 12px;
+      }
+    }
+    
+    #btnPecopeco a {
+      display: block;
+      padding: 10px;
+      background: #F03565;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: #FFF;
+      @include border-radius(4px,4px,4px,4px);
+    }
+    
+  }
+  
+}
+
+// Comment Box
+
+.commentsBox {
+  padding: 15px;
+  margin-bottom: 1em;
+  background: #fff;
+  @include border-radius(8px,8px,8px,8px);
+  h3 {
+    background: #5A534B;
+    color: white;
+    padding: 10px;
+    margin: -15px -15px 15px -15px;
+    @include border-radius(8px,8px,0px,0px);
+  }
+  .comment-new {
+    margin-bottom: 1em;
+    dl {
+      dd {
+        margin: 0px;
+        margin-bottom: 4px;
+        textarea {
+          width: 522px;
+        }
+        &.tweet, &.submit {
+          text-align: right;
+        }
+        &.tweet {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+  ul.comments {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      padding-bottom: 0.5em;
+      min-height: 48px;
+      margin-bottom: 1em;
+      border-bottom: 1px dashed #ccc;
+      &:last-child {
+        border: none;
+      }
+      .icon {
+        position: absolute;
+      }
+      .comment {
+        margin-left: 58px;
+      }
+    }
+  }
+}
+

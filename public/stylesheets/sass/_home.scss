@@ -1,0 +1,112 @@
+#homeContent {
+  margin: 15px 0px;
+  
+  h2 {
+    padding-bottom: 6px;
+    border-bottom: 2px solid #635A4B;
+    .moreLink {
+      font-size: 12px;
+      float: right;
+      padding: 6px;
+    }
+  }
+  
+  .section {
+    margin: 15px 0px;
+  }
+  
+  .main {
+    float: left;
+    width: 500px;
+    .thumbBox:nth-child(3n) { margin-right: 0px; }
+    .thumbBox:nth-child(5n) { margin-right: 20px; }
+  }
+  
+  .side {
+    float: right;
+    width: 320px;
+    // begin ul.news
+    ul.news {
+      padding-left: 0;
+      list-style: none;
+      li {
+        margin-bottom: 1em;
+        time {
+          font-weight: bold;
+        }
+        .title {
+          font-weight: bold;
+          font-size: 12px;
+        }
+        .body {
+          font-size: 12px;
+        }
+      }
+    }
+    // end ul.news
+    
+    // begin table.hot-users
+    table.hot-users {
+      width: 100%;
+      td.rank {
+        text-align: right;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: serif;
+        font-style: italic;
+      }
+      td.user-icon {
+        width: 54px;
+        img {
+          width: 48px;
+          height: 48px;
+        }
+      }
+    }
+    // end table.hot-users
+    
+  }
+  
+}
+
+.recentComments {
+  ul.comments {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      padding-bottom: 0.5em;
+      min-height: 36px;
+      margin-bottom: 1em;
+      border-bottom: 1px dashed #222;
+      &:last-child {
+        border: none;
+      }
+      .icon {
+        position: absolute;
+      }
+      .comment {
+        margin-left: 40px;
+        .meta {
+          font-size: 11px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+  
+  button.postPhotoButon {
+    padding: 20px;
+    border: none;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    background: #b20131;
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.4);
+    }
+

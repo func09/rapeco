@@ -1,0 +1,229 @@
+div:after {
+	content: ".";
+	display: block;
+	visibility: hidden;
+	height: 0.1px;
+	font-size: 0.1em;
+	line-height: 0;
+	clear: both;
+}
+
+div {
+	zoom: 100%;
+}
+
+html {
+  background: #C2AC71 url(/images/bg_brown.png) repeat-x;
+  }
+body {
+  background-color: transparent;
+  width: 840px;
+  margin: 0 auto;
+  color: #575149;
+  font-size: 13px;
+}
+
+/* Common */
+
+h1, h2, h3, h4 {
+  margin: 1em 0;
+  color: #393536;
+  }
+  h1 { font-size: 22px;}
+  h2 { font-size: 18px;}
+  h3 { font-size: 15px;}
+
+a:link { color: #b20131; text-decoration: none; }
+a:visited { color: #b20131; text-decoration: none; }
+a:hover { color: #b20131; text-decoration: underline; }
+a:active { color: #b20131; text-decoration: underline; }
+
+.shadow {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+.notice {
+  font-size: 16px;
+  font-weight: bold;
+  }
+
+.advice {
+  padding: 20px;
+  margin: 10px 0;
+  background-color: #b2d5f8;
+  border: solid 1px #64a9f2;
+  font-size: 15px;
+  }
+
+img.twitterIconMini {
+  border: 1px solid #CCC;
+  padding: 2px;
+  background : #FFF;
+  width: 24px;
+  height: 24px;
+  }
+img.twitterIcon16 {
+  border: 1px solid #CCC;
+  padding: 2px;
+  background : #FFF;
+  width: 16px;
+  height: 16px;
+  }
+img.twitterIcon {
+  border: 1px solid #CCC;
+  padding: 2px;
+  background : #FFF;
+  width: 36px;
+  height: 36px;
+  }
+
+.pagination {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(255, 255, 255, 0.4);
+  }
+  .pagination a {
+  }
+  .pagination a:hover, .pagination a:active {
+  }
+  .pagination span.current {
+  }
+  .pagination span.disabled {
+    opacity: 0.4;
+  }
+
+
+/**/
+#container {
+  width: 100%;
+  margin-top: 0px;
+  padding: 0;
+  border: none;
+  background: none;
+  }
+
+
+#footer {
+  background: #393536;
+  padding: 15px;
+  color: white;
+  text-shadow:0px 1px rgba(0,0,0,0.5);
+  }
+
+.backNav {
+  margin: 10px 0;
+  }
+.pecoSection {
+  margin-top: 10px;
+  }
+    #remainCount { font-size: 14px; font-weight: bold;}
+    #remainCount.go_green { color: green; }
+    #remainCount.go_red { color: red; }
+
+ul.haraheriTweets {
+  padding: 0;
+  }
+  ul.haraheriTweets li {
+    position: relative;
+    margin-bottom: 1em;
+    padding: 10px 0px;
+    list-style: none;
+    font-size: 12px;
+    color: #454545;
+    }
+    ul.haraheriTweets li .icon {
+      position: absolute;
+      }
+    ul.haraheriTweets li .tweetBox {
+      margin-left: 60px;
+      padding: 10px;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      color: #999;
+      background: rgba(0,0,0,0.9);
+      text-shadow: 0px 1px rgba(0, 0, 0, 1);
+      }
+      .tweetBox .status {
+        margin-top: 0px;
+        }
+      .tweetBox .meta {
+        margin: 0px;
+        text-align: right;
+        }
+
+/* About */
+#aboutContent h2 {
+  padding-bottom: 6px;
+  border-bottom: 2px solid #635A4B;
+  }
+
+#aboutContent img.capture {
+  border: 1px solid #CCC;
+  padding: 8px;
+  background: #FFF;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+#aboutContent ul.pickup li {
+  font-weight: bold;
+  font-size: 15px;
+  }
+
+/* Form */
+
+label {
+  font-weight: bold;
+  font-size: 115%;
+  line-height: 150%;
+  }
+
+textarea {
+  width: 518px;
+  height: 2.5em;
+  padding: 4px 2px;
+  border-radius: 3px;
+  border: 1px solid #AAAAAA;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  }
+  textarea:focus {
+    box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
+    outline: medium none;
+    border-color: rgba(82, 168, 236, 0.75) !important;
+    -webkit-box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
+    -moz-box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
+    }
+
+/* Help */
+
+.helpSection {
+  margin-top: 15px;
+  }
+
+#helpMenu {
+  float: left;
+  width: 200px;
+  }
+  #helpMenu ul {
+    padding-left: 20px;
+    }
+#helpContent {
+  float: left;
+  margin-left: 20px;
+  width: 620px;
+  }
+  
+  #helpContent img.capture {
+    border: 1px solid #CCC;
+    padding: 8px;
+    background: #FFF;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    }

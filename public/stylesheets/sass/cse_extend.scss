@@ -1,0 +1,29 @@
+@import 'mixin';
+
+#cse {
+  margin: 1em 0;
+}
+.gsc-control-cse {
+  min-height: 400px;
+  background: #FFF;
+  border: none;
+  @include border-radius(5px,5px,5px,5px);
+}
+
+input.gsc-input {
+  padding: 10px;
+  font-size: 2em;
+  width: 700px;
+}
+
+input.gsc-search-button {
+  padding: 10px;
+}
+
+.gs-title {
+  font-size: 1.1em;
+}
+
+.gsc-cursor-page {
+  float: left;
+}

@@ -1,0 +1,71 @@
+.myContent {
+  position: relative;
+  min-height: 400px;
+  .main {
+    margin-right: 300px;
+  }
+  .side {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.yumsBox {
+  }
+  
+  .yumsBox .thumbBox:nth-child(5n) {
+    margin-right: 22px;
+    }
+  
+.profileBox {
+  background: #FFF;
+  padding: 15px;
+  width: 250px;
+  @include border-radius(8px,8px,8px,8px);
+  
+  h3 {
+    background: #5A534B;
+    color: #FFF;
+    padding: 10px;
+    margin: 0px -15px 15px -15px;
+  }
+  h3.header {
+    margin: -15px -15px 15px -15px;
+    @include border-radius(8px,8px,0px,0px);
+  }
+  
+  .box {
+    margin-bottom: 10px;
+  }
+  .profileIcon {
+    float: left;
+    margin-right: 10px;
+    width: 48px;
+    img {
+      max-width: 48px;
+      max-height: 48px;
+    }
+  }
+  .profileLogin {
+    float: left;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .button a {
+    display: block;
+    background: #A9CB74;
+    padding: 0.8em;
+    @include border-radius(6px,6px,6px,6px);
+    color: #FFF;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    &:hover {
+      background: #A9BB74;
+    }
+  }
+  
+}
+

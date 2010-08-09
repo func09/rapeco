@@ -1,0 +1,18 @@
+- title "@#{params[:id]} さんのページ - ラペコ 美味しそう！を共有するサービス"
+- cache @cache_key, :expires_in => 5.minutes do
+
+  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+
+  .userContent
+    .main
+      .yumsBox
+        - if @yums.empty?
+          %p.notice= "まだ @#{@user.login} のペコフォトはありません"
+        - else
+          - @yums.each_with_index do |yum,index|
+            = render :partial => '/yums/yum', :locals => {:yum => yum, :rank => nil, :my => true}
+    .side
+      = render :partial => 'profile', :locals => {:user => @user}
+
+  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+

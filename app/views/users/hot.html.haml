@@ -1,0 +1,16 @@
+- title "注目ユーザー - ラペコ 美味しそう！を共有するサービス"
+- content_for :submenu do
+  = render :partial => 'submenu'
+- cache @cache_key, :expires_in => 1.hours do
+  %h1 注目ユーザー
+  = will_paginate(@users)
+
+  %ul.users
+    - @users.each_with_index do |user, index|
+      - rank = @users.offset + index + 1
+      = render :partial => 'user', :locals => {:user => user, :rank => rank}
+
+  = will_paginate(@users)
+    
+
+

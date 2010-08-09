@@ -1,0 +1,44 @@
+- title "ペコフォトを投稿する！ - ラペコ 美味しそう！を共有するサービス"
+- content_for :submenu do
+  = render :partial => 'menu'
+= javascript_include_tag 'jquery.NobleCount.min'
+:javascript
+  $(function(){
+    
+    $('#yum_submit').click(function(){
+      $.jGrowl("写真を投稿中です", { life: 5000 });
+    });
+    
+    $('#yum_text').NobleCount('#remainCount',{
+      max_chars: 100,
+      on_negative: 'go_red',
+      on_positive: 'go_green',
+      block_negative: true
+    });
+  });
+
+%h1 ペコフォトを投稿する！
+
+%p
+  美味しい食べ物の写真をとったらラペコに投稿しよう！
+  %br
+  写真はTwitPicにアップロードされて、「何たべた？」の内容をtwitterにつぶやきます。
+  %br
+  = "iPhoneから投稿したい人は#{link_to 'こちら', iphone_help_path}"
+
+- form_for :yum, :url => yums_path, :html => {:multipart => true} do |f|
+  %p
+    = f.label '美味しそうな写真'
+    %br
+    = f.file_field :upload_image
+  %p
+    = f.label :text, '何たべた？'
+    （残り<span id="remainCount"></span>文字）
+    %br
+    = f.text_area :text
+  %p
+    = f.check_box :tweetable
+    = f.label :tweetable, 'ツイッターにつぶやく'
+  %p
+    = f.submit 'ラペコに投稿する'
+

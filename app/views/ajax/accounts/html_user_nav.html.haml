@@ -1,0 +1,7 @@
+- if logged_in?
+  = image_tag current_user.profile_image_url, :class => 'twitterIcon16'
+  = current_user.login
+  = link_to 'ログアウト', logout_path
+- else
+  = link_to 'twitterでログイン', login_path
+= link_to '使い方', help_path

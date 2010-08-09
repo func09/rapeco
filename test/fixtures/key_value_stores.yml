@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+# == Schema Information
+#
+# Table name: key_value_stores
+#
+#  id         :integer         primary key
+#  key        :string(255)
+#  data       :text
+#  created_at :timestamp
+#  updated_at :timestamp
+#
+

@@ -1,0 +1,52 @@
+@mixin border-radius($tl: 0px, $tr: 0px, $br: 0px, $bl: 0px) {
+  -webkit-border-top-left-radius: $tl;
+  -webkit-border-top-right-radius: $tr;
+  -webkit-border-bottom-right-radius: $br;
+  -webkit-border-bottom-left-radius: $bl;
+  -moz-border-radius-topleft: $tl;
+  -moz-border-radius-topright: $tr;
+  -moz-border-radius-bottomright: $br;
+  -moz-border-radius-bottomleft: $bl;
+  border-top-left-radius: $tl;
+  border-top-right-radius: $tr;
+  border-bottom-right-radius: $br;
+  border-bottom-left-radius: $bl;
+}
+
+@mixin box-shadow($c, $x, $y, $d) {
+  -webkit-box-shadow: $c $x $y $d;
+  -moz-box-shadow: $c $x $y $d;
+  box-shadow: $c $x $y $d;
+}
+
+@mixin box-sizing($mode:border-box) {
+  -webkit-box-sizing: $mode;
+  -moz-box-sizing: $mode;
+  box-sizing: $mode;
+}
+  
+@mixin border-image($url, $outset: 0, $repeat: stretch) {
+  -moz-border-image: url("#{$url}") $outset $repeat;
+  -webkit-border-image: url("#{$url}") $outset $repeat;
+  -o-border-image: url("#{$url}") $outset $repeat;
+  -ms-border-image: url("#{$url}") $outset $repeat;
+}
+
+@mixin opacity($alpha:1) {
+  -ms-filter: "alpha( opacity=$alpha*100 )";
+  filter: alpha( opacity=$alpha*100 );
+  opacity: $alpha;
+}
+
+@mixin clearfix {
+  zoom: 100%;
+  &:after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    height: 0.1px;
+    font-size: 0.1em;
+    line-height: 0;
+    clear: both;
+  }
+}

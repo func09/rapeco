@@ -1,0 +1,21 @@
+- title "新着ユーザー - ラペコ 美味しそう！を共有するサービス"
+- content_for :submenu do
+  = render :partial => 'submenu'
+- cache @cache_key, :expires_in => 1.hours do
+
+  %h1 新着ユーザー
+  = will_paginate(@users, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+
+  %table.users
+    - @users.each_with_index do |user, index|
+      - rank = index + 1
+      %tr
+        %td.user-icon
+          = link_to image_tag(user.profile_image_url), user_path(user)
+        %td.user-info
+          = link_to user.login, user_path(user)
+          %br
+          = "#{user.yums.enables.count}photos"
+          = "#{user.yums.enables.sum(:yummy_count)}pecos"
+          = "#{user.yums.enables.sum(:view_count)}views"
+        %td.rank= rank
