@@ -12,6 +12,7 @@ gem 'ezcrypto'
 gem 'haml'
 gem 'mime-types'
 gem 'pacecar', '1.2.0'
+gem 'annotate'
 
 group :development do
   gem 'sqlite3-ruby', '1.2.4', :require => 'sqlite3'

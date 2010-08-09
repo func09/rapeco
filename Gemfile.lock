@@ -6,6 +6,10 @@ dependencies:
     version: = 2.3.8
     require: []
 
+  annotate: 
+    group: 
+    - :default
+    version: ">= 0"
   mysql: 
     group: 
     - :production
@@ -16,7 +20,7 @@ dependencies:
     version: = 1.2.4
     require: 
     - sqlite3
-  ezcrypto: 
+  haml: 
     group: 
     - :default
     version: ">= 0"
@@ -24,7 +28,7 @@ dependencies:
     group: 
     - :default
     version: ">= 0"
-  haml: 
+  ezcrypto: 
     group: 
     - :default
     version: ">= 0"
@@ -34,15 +38,11 @@ dependencies:
     version: ">= 0"
     require: 
     - memcache
-  forgery: 
-    group: 
-    - :default
-    version: ">= 0"
   oauth: 
     group: 
     - :default
     version: ">= 0"
-  mime-types: 
+  forgery: 
     group: 
     - :default
     version: ">= 0"
@@ -50,6 +50,10 @@ dependencies:
     group: 
     - :default
     version: = 0.4.1
+  mime-types: 
+    group: 
+    - :default
+    version: ">= 0"
   rspec: 
     group: 
     - :test
@@ -62,11 +66,11 @@ dependencies:
     group: 
     - :default
     version: = 1.2.0
-  json: 
+  configatron: 
     group: 
     - :default
     version: ">= 0"
-  configatron: 
+  json: 
     group: 
     - :default
     version: ">= 0"
@@ -91,8 +95,10 @@ specs:
     version: 2.3.8
 - activeresource: 
     version: 2.3.8
+- annotate: 
+    version: 2.4.0
 - json_pure: 
-    version: 1.4.5
+    version: 1.4.6
 - rubyforge: 
     version: 2.0.4
 - hoe: 
@@ -110,7 +116,7 @@ specs:
 - haml: 
     version: 3.0.16
 - json: 
-    version: 1.4.5
+    version: 1.4.6
 - memcache-client: 
     version: 1.8.5
 - memcached-northscale: 
@@ -135,7 +141,7 @@ specs:
     version: 0.1.22
 - whenever: 
     version: 0.4.1
-hash: 3b5d1369767d025303d0df943d3f9f0066eb9f6d
+hash: 5ce43a7d43c959ca47f1a0cb6c4f8982d87f7f21
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org

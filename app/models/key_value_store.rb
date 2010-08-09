@@ -17,14 +17,15 @@ class KeyValueStore < ActiveRecord::Base
   
 end
 
+
 # == Schema Information
 #
 # Table name: key_value_stores
 #
-#  id         :integer         primary key
+#  id         :integer         not null, primary key
 #  key        :string(255)
 #  data       :text
-#  created_at :timestamp
-#  updated_at :timestamp
+#  created_at :datetime
+#  updated_at :datetime
 #
 

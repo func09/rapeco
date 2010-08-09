@@ -117,6 +117,7 @@ class Yum < ActiveRecord::Base
   
 end
 
+
 # == Schema Information
 #
 # Table name: yums
@@ -136,5 +137,6 @@ end
 #  uid             :string(255)
 #  text            :string(140)
 #  comments_count  :integer         default(0)
+#  twitter_id      :string(255)
 #
 
