@@ -1,35 +1,38 @@
-set :rails_env, 'production'
+set :rails_env, :production
+set :repository,  'git://github.com/func09/rapeco.git'
+set :application, "rapeco"
 
-set :application, "bimitter"
-set :repository,  "http://svn.func09.net/bimitter/trunk/"
-
-set :scm, :subversion
-set :scm_username,    ENV['SVN_USER'] || ENV['USER']
-set :scm_password, proc{Capistrano::CLI.password_prompt("Please input #{user} password for #{scm}:")}
-
-set :user, 'app'
+set :scm, :git
+set :user, "app"
 set :use_sudo, false
-# set :ssh_options, :keys => './.ssh/app_deploy'
-set :deploy_via, :export
-set :deploy_to, "/home/#{user}/deploy/#{rails_env}_#{application}"
+set :branch, "master"
+set :deploy_via, :copy
+set :deploy_to, "/home/app/deploy/#{application}"
 
-role :web, "func09.net"                          # Your HTTP server, Apache/etc
-role :app, "func09.net"                          # This may be the same as your `Web` server
-role :db,  "func09.net", :primary => true # This is where Rails migrations will run
+role :web, "rapeco.jp"
+role :app, "rapeco.jp"
+role :db,  "rapeco.jp", :primary => true
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :unicorn_binary, "/usr/bin/unicorn_rails"
+set :unicorn_config, "#{current_path}/config/unicorn.rb"
+set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 namespace :deploy do
-  task :start do
+  task :start, :roles => :app, :except => { :no_release => true } do 
+    run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
   end
-  task :stop do
+  task :stop, :roles => :app, :except => { :no_release => true } do 
+    run "#{try_sudo} kill `cat #{unicorn_pid}`"
+  end
+  task :graceful_stop, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
+  end
+  task :reload, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
-     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+    reload
   end
-  
   desc "Copy shared config files to current application."
   task :copy_config_file, :roles => :app do
     run <<-CMD
@@ -49,6 +52,5 @@ after 'deploy:update_code', 'deploy:copy_config_file'
 after "deploy:symlink", "deploy:update_crontab"
 
 after 'deploy:finalize_update' do
-  # run "cd #{latest_release} && bundle install #{shared_path}/vendor --without development,test && bundle lock"
-  run "cd #{latest_release} && bundle install #{shared_path}/vendor && bundle lock"
+  run "cd #{latest_release} && bundle install #{shared_path}/vendor --without development,test && bundle lock"
 end
