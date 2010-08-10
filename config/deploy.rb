@@ -21,14 +21,14 @@ namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
     run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
   end
-  task :stop, :roles => :app, :except => { :no_release => true } do 
-    run "#{try_sudo} kill `cat #{unicorn_pid}`"
+  task :stop, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} kill `cat #{unicorn_pid}` || echo 'no pid file'"
   end
   task :graceful_stop, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
+    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}` || echo 'no pid file'"
   end
   task :reload, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
+    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}` || echo 'no pid file'"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
     reload
@@ -43,7 +43,7 @@ namespace :deploy do
   end
   desc "Update the crontab file"
   task :update_crontab, :roles => :db do
-    run "cd #{release_path} && whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
+    run "cd #{release_path} && bundle exec whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
   end
   
 end
