@@ -22,7 +22,6 @@ end
 group :production do
   gem 'mysql'
   gem 'memcache-client', :require => 'memcache'
-  gem 'memcached-northscale', :require => 'memcached'
 end
 
 group :test do

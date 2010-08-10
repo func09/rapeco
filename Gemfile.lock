@@ -1,26 +1,22 @@
 --- 
 dependencies: 
+  annotate: 
+    group: 
+    - :default
+    version: ">= 0"
   rails: 
     group: 
     - :default
     version: = 2.3.8
     require: []
 
-  annotate: 
-    group: 
-    - :default
-    version: ">= 0"
-  mysql: 
+  memcache-client: 
     group: 
     - :production
     version: ">= 0"
-  sqlite3-ruby: 
-    group: 
-    - :development
-    version: = 1.2.4
     require: 
-    - sqlite3
-  haml: 
+    - memcache
+  ezcrypto: 
     group: 
     - :default
     version: ">= 0"
@@ -28,21 +24,29 @@ dependencies:
     group: 
     - :default
     version: ">= 0"
-  ezcrypto: 
+  haml: 
     group: 
     - :default
     version: ">= 0"
-  memcache-client: 
+  sqlite3-ruby: 
+    group: 
+    - :development
+    version: = 1.2.4
+    require: 
+    - sqlite3
+  mysql: 
     group: 
     - :production
     version: ">= 0"
-    require: 
-    - memcache
+  forgery: 
+    group: 
+    - :default
+    version: ">= 0"
   oauth: 
     group: 
     - :default
     version: ">= 0"
-  forgery: 
+  mime-types: 
     group: 
     - :default
     version: ">= 0"
@@ -50,10 +54,6 @@ dependencies:
     group: 
     - :default
     version: = 0.4.1
-  mime-types: 
-    group: 
-    - :default
-    version: ">= 0"
   rspec: 
     group: 
     - :test
@@ -66,20 +66,14 @@ dependencies:
     group: 
     - :default
     version: = 1.2.0
-  configatron: 
-    group: 
-    - :default
-    version: ">= 0"
   json: 
     group: 
     - :default
     version: ">= 0"
-  memcached-northscale: 
+  configatron: 
     group: 
-    - :production
+    - :default
     version: ">= 0"
-    require: 
-    - memcached
 specs: 
 - rake: 
     version: 0.8.7
@@ -119,8 +113,6 @@ specs:
     version: 1.4.6
 - memcache-client: 
     version: 1.8.5
-- memcached-northscale: 
-    version: 0.19.5.3
 - mime-types: 
     version: "1.16"
 - mysql: 
@@ -141,7 +133,7 @@ specs:
     version: 0.1.22
 - whenever: 
     version: 0.4.1
-hash: 5ce43a7d43c959ca47f1a0cb6c4f8982d87f7f21
+hash: f00f1c0361843845addc5a139b3f2088fb4e76d2
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
