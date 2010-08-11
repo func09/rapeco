@@ -20,7 +20,7 @@ class Crawler
       upload_user = User.find_by_login(configatron.twitter.upload_user)
       
       # mentions 取得
-      mentions = upload_user.twitter.get('/statuses/mentions.json', 'since_id' => KeyValueStore.get(:update_check_since_id))
+      mentions = upload_user.twitter.get('/statuses/mentions.json', 'since_id' => Rails.cache.read(:update_check_since_id))
       mentions.each do |mention|
         
         # 写真URLを含み、登録ユーザーのツイートであり、まだ登録されていない画像であるならば
@@ -45,7 +45,7 @@ class Crawler
             
             if yum.save
               results << yum
-              KeyValueStore.set(:update_check_since_id, mention['id'] )
+              Rails.cache.write(:update_check_since_id, mention['id'] )
             end
             
           end
