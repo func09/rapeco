@@ -1,3 +1,4 @@
+require File.join(RAILS_ROOT, '/config/initializers/00_load_env.rb')
 # Initialize with:
 #   rake backup:run trigger='mysql-backup-s3'
 backup 'mysql-backup-s3' do
@@ -24,6 +25,5 @@ backup 'mysql-backup-s3' do
   end
   
   keep_backups 365
-  encrypt_with_password ENV['BACKUP_ENCRYPT_PASSWORD']
   
 end
