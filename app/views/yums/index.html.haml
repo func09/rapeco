@@ -2,7 +2,7 @@
 - content_for :submenu do
   = render :partial => 'menu'
 %h1= @h1
-- cache @cache_key, :expires_in => 1.minutes do
+- cache @cache_key do
   = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
   .thumbListBox
     - @yums.each_with_index do |yum, index|

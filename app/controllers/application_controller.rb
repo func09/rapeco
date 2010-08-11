@@ -22,15 +22,21 @@ class ApplicationController < ActionController::Base
   def impotant_notice
     @impotant_notice ||= Notice.published.impotants.first
   end
-  
-  def get_cache_key(age = 60)
-    timestamp = Time.zone.now.to_i / (age)
-    "#{request.params.to_query}-#{timestamp}"
+
+  # @param [Integer] options[:expires_in] sec
+  def cache_key(name, options = {})
+    cache_key = nil
+    if options[:expires_in]
+      ts = Time.zone.now.to_i / options[:expires_in].to_i
+      cache_key = "#{name}+#{ts}"
+    else
+      cache_key = name
+    end
   end
   
-  def expire_fragment_with_cache_name
-    # r = Regexp.new(get_cache_key.sub(/[0-9]+$/,'.*'))
-    # expire_fragment(r) 
+  def expire_fragment_with_cache_name(cache_key)
+    @tt_sweeper ||= TokyoTyrantSweeper.new('localhost','1978','rapeco')
+    @tt_sweeper.sweep(cache_key)
   end
   
 end
