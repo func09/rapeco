@@ -48,6 +48,24 @@ namespace :deploy do
   
 end
 
+namespace :deploy do
+  namespace :web do
+    desc 'Upload Maintenance HTML'
+    task :disable, :roles => :web do
+      # invoke with  
+      # UNTIL="16:00 MST" REASON="a database upgrade" cap deploy:web:disable
+
+      on_rollback { rm "#{shared_path}/system/maintenance.html" }
+
+      require 'erb'
+      deadline, reason = ENV['UNTIL'], ENV['REASON']
+      maintenance = ERB.new(File.read("./app/views/layouts/maintenance.html.erb")).result(binding)
+
+      put maintenance, "#{shared_path}/system/maintenance.html", :mode => 0644
+    end
+  end
+end
+
 after 'deploy:update_code', 'deploy:copy_config_file'
 after "deploy:symlink", "deploy:update_crontab"
 
