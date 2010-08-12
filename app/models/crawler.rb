@@ -20,7 +20,7 @@ class Crawler
       upload_user = User.find_by_login(configatron.twitter.upload_user)
       
       # mentions 取得
-      if since_id = Rails.cache.write(:update_check_since_id)
+      if since_id = Rails.cache.read(:update_check_since_id)
         mentions = upload_user.twitter.get('/statuses/mentions.json', 'since_id' => since_id.to_s)
       else
         mentions = upload_user.twitter.get('/statuses/mentions.json')
