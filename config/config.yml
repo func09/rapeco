@@ -13,7 +13,7 @@ development:
   twitter:
     app:
       oauth_consumer_key: <%= ENV['OAUTH_CONSUMER_KEY'] %>
-      oauth_consumer_secret: <%= ENV['OAUTH_CONSUMER_KEY'] %>
+      oauth_consumer_secret: <%= ENV['OAUTH_CONSUMER_SECRET'] %>
     app_user: <%= ENV['TWITTER_APP_USER'] %>
     upload_user: <%= ENV['TWITTER_UPLOAD_USER'] %>
     hashtag: pecora
@@ -25,14 +25,14 @@ production:
   <<: *defaults
   host: 'http://rapeco.jp'
   admin:
-    username: admin
-    password: hrhr83nKi0kIl
+    username: <%= ENV['ADMIN_USERNAME'] %>
+    password: <%= ENV['ADMIN_PASSWORD'] %>
   twitpic:
-    api_key: c494c39d2b24ad9364e29a60304734ce
+    api_key: <%= ENV['TWITPIC_API_KEY'] %>
   twitter:
     app:
-      oauth_consumer_key: Reyqu7lgMpVGPJfUPFO5w
-      oauth_consumer_secret: 5jipEBO605BrMoPYvPkFzRSwrJD4k6ksq2yGWVM3vI
+      oauth_consumer_key: <%= ENV['OAUTH_CONSUMER_KEY'] %>
+      oauth_consumer_secret: <%= ENV['OAUTH_CONSUMER_SECRET'] %>
     hashtag: rapeco
-    app_user: rapeco_jp
-    upload_user: uppeco
+    app_user: <%= ENV['TWITTER_APP_USER'] %>
+    upload_user: <%= ENV['TWITTER_UPLOAD_USER'] %>

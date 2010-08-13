@@ -21,6 +21,10 @@ class Comment < ActiveRecord::Base
   named_scope :exclude_self,
     :conditions => ['user_id != to_user_id']
   
+  default_value_for :comment do
+    "ハラペコなう！"
+  end
+  
   def will_tweet?
     self.will_tweet == '1'
   end
