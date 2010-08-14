@@ -34,9 +34,4 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def expire_fragment_with_cache_name(cache_key)
-    @tt_sweeper ||= TokyoTyrantSweeper.new('localhost','1978','rapeco')
-    @tt_sweeper.sweep(cache_key)
-  end
-  
 end

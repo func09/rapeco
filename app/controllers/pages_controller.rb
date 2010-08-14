@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @cache_key = cache_key(params.to_query, :expires_in => 1.minutes)
+    @cache_key = params.to_query
     unless read_fragment @cache_key
       @notices      = Notice.published.limited(3)
       @comments     = Comment.recent.limited(5)
@@ -8,7 +8,6 @@ class PagesController < ApplicationController
       @hot_yums     = Yum.hot.limited(6)
       @recent_yums  = Yum.recent.limited(9)
       @popular_yums = Yum.popular.limited(3)
-      expire_fragment_with_cache_name(params.to_query)
     end
   end
   

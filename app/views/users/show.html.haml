@@ -1,5 +1,5 @@
 - title "@#{params[:id]} さんのページ - ラペコ 美味しそう！を共有するサービス"
-- cache @cache_key do
+- cache @cache_key, :expires_in => 1.minutes  do
 
   = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
 

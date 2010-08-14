@@ -5,13 +5,13 @@ set :application, "rapeco"
 set :scm, :git
 set :user, "app"
 set :use_sudo, false
-set :branch, "master"
+set :branch, "for-saases"
 set :deploy_via, :copy
 set :deploy_to, "/home/app/deploy/#{application}"
 
-role :web, "rapeco.jp"
-role :app, "rapeco.jp"
-role :db,  "rapeco.jp", :primary => true
+role :web, "163.43.176.20"
+role :app, "163.43.176.20"
+role :db,  "163.43.176.20", :primary => true
 
 set :unicorn_binary, "/usr/bin/unicorn_rails"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
@@ -43,7 +43,7 @@ namespace :deploy do
   end
   desc "Update the crontab file"
   task :update_crontab, :roles => :db do
-    run "cd #{release_path} && bundle exec whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
+  #  run "cd #{release_path} && bundle exec whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
   end
   
 end

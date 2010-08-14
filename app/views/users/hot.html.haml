@@ -1,7 +1,7 @@
 - title "注目ユーザー - ラペコ 美味しそう！を共有するサービス"
 - content_for :submenu do
   = render :partial => 'submenu'
-- cache @cache_key do
+- cache @cache_key, :expires_in => 1.minutes do
   %h1 注目ユーザー
   = will_paginate(@users)
 
