@@ -13,7 +13,7 @@ role :web, "163.43.176.20"
 role :app, "163.43.176.20"
 role :db,  "163.43.176.20", :primary => true
 
-set :unicorn_binary, "/usr/bin/unicorn_rails"
+set :unicorn_binary, "bundle exec unicorn_rails"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 

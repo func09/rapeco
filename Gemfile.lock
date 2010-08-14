@@ -1,22 +1,22 @@
 --- 
 dependencies: 
+  annotate: 
+    group: 
+    - :default
+    version: ">= 0"
   rails: 
     group: 
     - :default
     version: = 2.3.8
     require: []
 
-  annotate: 
-    group: 
-    - :default
-    version: ">= 0"
   memcache-client: 
     group: 
     - :production
     version: ">= 0"
     require: 
     - memcache
-  haml: 
+  ezcrypto: 
     group: 
     - :default
     version: ">= 0"
@@ -24,7 +24,7 @@ dependencies:
     group: 
     - :default
     version: ">= 0"
-  ezcrypto: 
+  haml: 
     group: 
     - :default
     version: ">= 0"
@@ -38,15 +38,19 @@ dependencies:
     group: 
     - :production
     version: ">= 0"
-  oauth: 
-    group: 
-    - :default
-    version: ">= 0"
   forgery: 
     group: 
     - :default
     version: ">= 0"
-  backup: 
+  oauth: 
+    group: 
+    - :default
+    version: ">= 0"
+  unicorn: 
+    group: 
+    - :default
+    version: ">= 0"
+  mime-types: 
     group: 
     - :default
     version: ">= 0"
@@ -54,7 +58,7 @@ dependencies:
     group: 
     - :default
     version: = 0.4.1
-  mime-types: 
+  backup: 
     group: 
     - :default
     version: ">= 0"
@@ -70,11 +74,11 @@ dependencies:
     group: 
     - :default
     version: = 1.2.0
-  configatron: 
+  json: 
     group: 
     - :default
     version: ">= 0"
-  json: 
+  configatron: 
     group: 
     - :default
     version: ">= 0"
@@ -136,7 +140,7 @@ specs:
 - mysql: 
     version: 2.8.1
 - oauth: 
-    version: 0.4.1
+    version: 0.4.2
 - pacecar: 
     version: 1.2.0
 - rails: 
@@ -149,9 +153,11 @@ specs:
     version: 1.2.4
 - twitter-auth: 
     version: 0.1.22
+- unicorn: 
+    version: 1.1.2
 - whenever: 
     version: 0.4.1
-hash: 51580858ae2c985360eae1deee6e03f22cc0d174
+hash: 83a0a1a493a9b3c6a9d98c8bf6f38f062e9f8c71
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
