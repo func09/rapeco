@@ -6,42 +6,41 @@ ActionController::Routing::Routes.draw do |map|
   map.campaign_delicam "/campaign_delicam", :controller => 'pages', :action => 'campaign_delicam'
   map.search "/search", :controller => :pages, :action => :search
   
-  map.resource :help, :only => [:show], :member => {
-    :biginner => :get,
-    :iphone => :get,
-    :report => :get,
-  }
+  map.resource :help, 
+    :only => [:show], 
+    :member => {
+      :biginner => :get,
+      :iphone => :get,
+      :report => :get,}
   
-  map.resources :yums, :as => 'pecos', 
-  :collection => {
-    :recent => :get,
-    :hot => :get,
-    :popular => :get,
-  },
-  :member => {
-    :vote => :put,
-    :report => :put,
-  } do |yums|
-    yums.resources :comments, :only => [:create]
+  map.resources :yums, 
+    :as => 'pecos', 
+    :collection => {
+      :recent => :get,
+      :hot => :get,
+      :popular => :get,},
+    :member => {
+      :vote => :put,
+      :report => :put, } do |yums|
+      yums.resources :comments, :only => [:create]
   end
   
   map.resources :users,
-                :collection => {
-                  :recent => :get,
-                  :hot => :get,
-                }
+    :collection => {
+      :recent => :get,
+      :hot => :get,}
   map.resource :mypage, 
-               :as => 'my', 
-               :member => {:destroy_pecophoto => :delete} do |my|
-                 my.resources :comments, :only => [:index], :controller => 'mypages/comments'
+    :as => 'my', 
+    :member => {
+      :destroy_pecophoto => :delete} do |my|
+        my.resources :comments, :only => [:index], :controller => 'mypages/comments'
   end
   
   map.namespace :ajax do |ajax|
     ajax.resource :account, 
-                  :member => {
-                    :verify_logged_in => :get,
-                    :html_user_nav => :get,
-                  }
+      :member => {
+        :verify_logged_in => :get,
+        :html_user_nav => :get,}
   end
   
   map.pecophoto '/:uid', :controller => :application, :action => :pecophoto_proxy, :uid => /[0-9a-zA-Z]{6,8}/
