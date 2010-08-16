@@ -9,13 +9,11 @@ class Yum < ActiveRecord::Base
   has_friendly_id :uid
   belongs_to :user, :counter_cache => true
   
-  UID_LENGTH = 8
-  
   attr_accessor :tweetable
   attr_accessor :upload_image
   
   default_value_for :uid do
-    Forgery(:basic).text(:at_least => UID_LENGTH, :at_most => UID_LENGTH, :allow_upper => false)
+    Forgery(:basic).text(:at_least => 6, :at_most => 6)
   end
 
   default_value_for :tweetable, :true

@@ -44,7 +44,7 @@ ActionController::Routing::Routes.draw do |map|
                   }
   end
   
-  map.pecophoto '/:uid', :controller => :application, :action => :pecophoto_proxy, :uid => /[0-9a-z]{8}/
+  map.pecophoto '/:uid', :controller => :application, :action => :pecophoto_proxy, :uid => /[0-9a-zA-Z]{6,8}/
   
   map.namespace :admin do |admin|
     admin.root :controller => 'dashboards', :action => 'show'
