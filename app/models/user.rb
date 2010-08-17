@@ -2,6 +2,7 @@ class User < TwitterAuth::GenericUser
   include Pacecar
   has_friendly_id :login
   
+  # Relations:
   has_many :yums, :conditions => ['not_yummy_image = ?',false]
   has_many :comments
   has_many :receive_comments, 
@@ -10,6 +11,8 @@ class User < TwitterAuth::GenericUser
     :readonly => true, 
     :order => 'created_at DESC',
     :conditions => ['user_id != to_user_id']
+  
+  # Named Scope:
   named_scope :hot,
     :from => 'users, (SELECT user_id, SUM(yummy_point) AS point FROM yums GROUP BY user_id) as v',
     :conditions => ['users.id = v.user_id'],
