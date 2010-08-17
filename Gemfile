@@ -14,6 +14,7 @@ gem 'mime-types'
 gem 'pacecar', '1.2.0'
 gem 'annotate'
 gem 'backup'
+gem 'acts-as-taggable-on', '2.0.6'
 
 group :development do
   gem 'sqlite3-ruby', '1.2.4', :require => 'sqlite3'

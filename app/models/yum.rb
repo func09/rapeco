@@ -2,22 +2,31 @@ require 'open-uri'
 require 'twitpic'
 require 'twitpic2'
 class Yum < ActiveRecord::Base
+
+  # Includes:
   include Pacecar
   include ActionView::Helpers::TextHelper
-  
+
+  # Relations:
   has_many :comments
   has_friendly_id :uid
   belongs_to :user, :counter_cache => true
-  
+
+  # Tag:
+  acts_as_taggable
+
+  # Attributes:
   attr_accessor :tweetable
   attr_accessor :upload_image
-  
+
+  # Default Values:
   default_value_for :uid do
     Forgery(:basic).text(:at_least => 6, :at_most => 6)
   end
 
   default_value_for :tweetable, :true
-  
+
+  # Named Scope:
   named_scope :recented,
     :order => 'created_at DESC'
   
@@ -35,12 +44,14 @@ class Yum < ActiveRecord::Base
   named_scope :popular, 
     :conditions => ['not_yummy_image = ? AND created_at >= ? AND yummy_count > 0 AND view_count >= 10', false, 3.month.ago], 
     :order => 'yummy_point DESC, updated_at DESC'
-  
+
+  # Validates:
   validates_presence_of :photo_service
   validates_presence_of :photo_url
   validates_presence_of :uploaded_at
   validates_uniqueness_of :photo_url
-  
+
+  # Callbacks:
   before_save :calc_yummy_point
   
   def view!
