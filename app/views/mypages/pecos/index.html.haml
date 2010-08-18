@@ -9,19 +9,23 @@
         %p.advice= link_to '美味しそうな料理写真を投稿しましょう！', new_yum_path
       - else
         - @yums.each_with_index do |yum,index|
-          .thumbPhoto
-            %a(href="#{yum_path(yum)}")
-              = image_tag photo_url_with_yum(yum, :size => :thumb), :class => 'thumb'
-          .title= yum.text
-          .tags= yum.tag_list
-          .meta
-            %span.count= "<strong>#{yum.yummy_count}</strong>ペコ"
-            %span.count= "<strong>#{yum.view_count}</strong>ビュー"
-            %span.count= "<strong>#{yum.comments_count}</strong>コメント"
-            = "at #{distance_of_time_in_words_to_now(yum.created_at)}前"
-            = link_to '編集する', edit_mypage_peco_path(yum.id)
-            = link_to '削除する', destroy_pecophoto_mypage_path(:yum_id => yum.id), :method => :delete, :confirm => '本当に削除してもよろしいですか？'
-          %hr
+          .yumBox
+            .thumbBlock
+              %a(href="#{yum_path(yum)}")
+                = image_tag photo_url_with_yum(yum, :size => :thumb), :class => 'thumb'
+            .contentBlock
+              .date
+                = yum.created_at.strftime("%Y年%m月%d日 %H:%M")
+              .title= link_to((truncate(yum.text, :length => 50) || 'No Title'), yum_path(yum))
+              .tags= yum.tag_list
+              .meta
+                .count
+                  %span= "<strong>#{yum.yummy_count}</strong>ペコ"
+                  %span= "<strong>#{yum.view_count}</strong>ビュー"
+                  %span= "<strong>#{yum.comments_count}</strong>コメント"
+                .action
+                  = link_to '編集する', edit_mypage_peco_path(yum.id)
+                  = link_to '削除する', destroy_pecophoto_mypage_path(:yum_id => yum.id), :method => :delete, :confirm => '本当に削除してもよろしいですか？'
   .side
     = render :partial => 'mypages/profile', :locals => {:user => current_user}
 

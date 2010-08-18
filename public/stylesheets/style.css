@@ -622,6 +622,44 @@ button.postPhotoButon {
     top: 0;
     right: 0; }
 
+.yumsBox .yumBox {
+  position: relative;
+  background: #FFF;
+  padding: 15px;
+  margin-bottom: 10px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px; }
+  .yumsBox .yumBox .thumbBlock {
+    float: left;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    background: #000000; }
+  .yumsBox .yumBox .contentBlock {
+    float: left;
+    width: 350px; }
+    .yumsBox .yumBox .contentBlock .date {
+      font-size: 11px;
+      color: #BBB; }
+    .yumsBox .yumBox .contentBlock .title {
+      margin-top: 6px;
+      font-family: serif;
+      font-size: 18px;
+      font-weight: bold; }
+    .yumsBox .yumBox .contentBlock .meta {
+      position: absolute;
+      bottom: 15px; }
+
 .yumsBox .thumbBox:nth-child(5n) {
   margin-right: 22px; }
 

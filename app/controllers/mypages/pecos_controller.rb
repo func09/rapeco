@@ -15,5 +15,10 @@ class Mypages::PecosController < ApplicationController
   def edit
     @yum = current_user.yums.enables.find(params[:id])
   end
+  
+  def update
+    @yum = current_user.yums.enables.find(params[:id])
+    
+  end
 
 end

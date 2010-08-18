@@ -9,6 +9,10 @@
       .rank
         ="#{rank}位"
   .meta(style="text-align: right;")
+    .title
+      %strong= truncate(yum.text, :length => 20)
+    .tags
+      = yum.tag_list
     %span.count= "<strong>#{yum.yummy_count}</strong>ペコ"
     %span.count= "<strong>#{yum.view_count}</strong>ビュー"
     %br
