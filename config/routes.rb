@@ -33,7 +33,9 @@ ActionController::Routing::Routes.draw do |map|
     :as => 'my', 
     :member => {
       :destroy_pecophoto => :delete} do |my|
-        my.resources :comments, :only => [:index], :controller => 'mypages/comments'
+      my.root :controller => 'mypages/pecos'
+      my.resources :comments, :only => [:index], :controller => 'mypages/comments'
+      my.resources :pecos, :controller => 'mypages/pecos'
   end
   
   map.namespace :ajax do |ajax|

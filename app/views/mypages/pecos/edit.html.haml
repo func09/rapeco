@@ -1,0 +1,5 @@
+- form_for @yum, :url => mypage_peco_path(@yum) do |f|
+  .text= f.text_area :text
+  .tags= f.text_field :tag_list
+  .image= f.file_field :image
+  .submit= f.submit

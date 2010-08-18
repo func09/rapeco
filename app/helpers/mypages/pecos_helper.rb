@@ -1,0 +1,2 @@
+module Mypages::PecosHelper
+end
