@@ -18,7 +18,13 @@ class Mypages::PecosController < ApplicationController
   
   def update
     @yum = current_user.yums.enables.find(params[:id])
-    
+    if @yum.update_attributes(params[:yum])
+      flash[:notice] = '成功'
+      redirect_to yum_path(@yum)
+    else
+      flash[:error] = '失敗'
+      render :action => 'edit'
+    end
   end
 
 end

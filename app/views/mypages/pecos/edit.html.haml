@@ -1,5 +1,17 @@
+%h2
+  ペコフォトの編集
+
+= image_tag photo_url_with_yum(@yum, :size => :thumb), :class => 'thumb'
+
 - form_for @yum, :url => mypage_peco_path(@yum) do |f|
-  .text= f.text_area :text
-  .tags= f.text_field :tag_list
-  .image= f.file_field :image
+  .image
+    = f.label :upload_image
+    = f.file_field :upload_image
+  .text
+    = f.label :text
+    = f.text_area :text
+  .tags
+    = f.label :tag_list
+    = f.text_field :tag_list
+    カンマ区切りでキーワードを入力してください
   .submit= f.submit

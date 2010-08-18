@@ -17,7 +17,9 @@
               .date
                 = yum.created_at.strftime("%Y年%m月%d日 %H:%M")
               .title= link_to((truncate(yum.text, :length => 50) || 'No Title'), yum_path(yum))
-              .tags= yum.tag_list
+              .tags
+                タグ：
+                = yum.tag_list
               .meta
                 .count
                   %span= "<strong>#{yum.yummy_count}</strong>ペコ"

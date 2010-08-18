@@ -656,6 +656,9 @@ button.postPhotoButon {
       font-family: serif;
       font-size: 18px;
       font-weight: bold; }
+    .yumsBox .yumBox .contentBlock .tags {
+      font-size: 10px;
+      color: #CCC; }
     .yumsBox .yumBox .contentBlock .meta {
       position: absolute;
       bottom: 15px; }
