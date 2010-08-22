@@ -1,3 +1,4 @@
+
 .thumbBox {
   
   float: left;
@@ -68,20 +69,46 @@
 }
 
 .pecoSection {
-  
-  margin: 10px 0;
-  
-  .mainBox {
-    float: left;
-    width: 550px;
-  }
-  
-  .sideBox {
-    float: right;
-    width: 280px;
-  }
-  
 }
+
+.yumBox {
+  @include gray-frame;
+  .inner {
+    min-height: 150px;
+  }
+  .thumbBlock {
+    position: absolute;
+    //float: left;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    background: #000000;
+  }
+  .contentBlock {
+    margin-left: 165px;
+    .date {
+      font-size: 11px;
+      color: #BBB;
+    }
+    .title {
+      font-family: serif;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 120%;
+    }
+    .tags {
+      font-size: 10px;
+      color: #CCC;
+    }
+    .count {
+    }
+    .meta {
+      position: absolute;
+      bottom: 15px;
+    }
+  }
+}
+
 
 .pecoPhotoBox {
   margin-bottom: 1em;
@@ -121,10 +148,6 @@
 .sideBox {
   
   .metaBox {
-    background: #FFF;
-    @include border-radius(8px,8px,8px,8px);
-    padding: 15px;
-    width: 250px;
     
     .profileIcon {
       float: left;

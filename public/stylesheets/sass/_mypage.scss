@@ -13,44 +13,6 @@
 
 .yumsBox {
   
-  .yumBox {
-    position: relative;
-    background: #FFF;
-    padding: 15px;
-    margin-bottom: 10px;
-    @include border-radius(8px,8px,8px,8px);
-    .thumbBlock {
-      float: left;
-      margin-right: 10px;
-      width: 150px;
-      height: 150px;
-      background: #000000;
-    }
-    .contentBlock {
-      float: left;
-      width: 350px;
-      .date {
-        font-size: 11px;
-        color: #BBB;
-      }
-      .title {
-        margin-top: 6px;
-        font-family: serif;
-        font-size: 18px;
-        font-weight: bold;
-      }
-      .tags {
-        font-size: 10px;
-        color: #CCC;
-      }
-      .count {
-      }
-      .meta {
-        position: absolute;
-        bottom: 15px;
-      }
-    }
-  }
   
 }
   

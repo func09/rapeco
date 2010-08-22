@@ -27,6 +27,10 @@ class Yum < ActiveRecord::Base
   default_value_for :tweetable, :true
 
   # Named Scope:
+  named_scope :all,
+    :conditions => ['not_yummy_image = ?', false], 
+    :order => 'yummy_point DESC, updated_at DESC'
+    
   named_scope :recented,
     :order => 'created_at DESC'
   
@@ -34,15 +38,15 @@ class Yum < ActiveRecord::Base
     :conditions => ['not_yummy_image = ?', false]
   
   named_scope :recent, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 24.hours.ago], 
+    :conditions => ['not_yummy_image = ? AND yums.created_at >= ?', false, 48.hours.ago], 
     :order => 'created_at DESC'        
     
   named_scope :hot, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 24.hours.ago], 
+    :conditions => ['not_yummy_image = ? AND yums.created_at >= ?', false, 48.hours.ago], 
     :order => 'yummy_point DESC, updated_at DESC'
               
   named_scope :popular, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ? AND yummy_count > 0 AND view_count >= 10', false, 3.month.ago], 
+    :conditions => ['not_yummy_image = ? AND yums.created_at >= ? AND yummy_count > 0 AND view_count >= 10', false, 3.month.ago], 
     :order => 'yummy_point DESC, updated_at DESC'
 
   # Validates:
@@ -53,6 +57,17 @@ class Yum < ActiveRecord::Base
 
   # Callbacks:
   before_save :calc_yummy_point
+  
+  # Class Methods
+  class << self
+    def search(mode, tag = nil)
+      if tag
+        try(mode).tagged_with(tag)
+      else
+        try(mode)
+      end
+    end
+  end
   
   def view!
     self.increment!(:view_count)

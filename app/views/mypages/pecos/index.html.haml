@@ -1,6 +1,5 @@
 - title "あなたのペコフォト - ラペコ 美味しそう！を共有するサービス"
 %h1 あなたのペコフォト
-= will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
 
 .myContent
   .main
@@ -9,25 +8,7 @@
         %p.advice= link_to '美味しそうな料理写真を投稿しましょう！', new_yum_path
       - else
         - @yums.each_with_index do |yum,index|
-          .yumBox
-            .thumbBlock
-              %a(href="#{yum_path(yum)}")
-                = image_tag photo_url_with_yum(yum, :size => :thumb), :class => 'thumb'
-            .contentBlock
-              .date
-                = yum.created_at.strftime("%Y年%m月%d日 %H:%M")
-              .title= link_to((truncate(yum.text, :length => 50) || 'No Title'), yum_path(yum))
-              .tags
-                タグ：
-                = yum.tag_list
-              .meta
-                .count
-                  %span= "<strong>#{yum.yummy_count}</strong>ペコ"
-                  %span= "<strong>#{yum.view_count}</strong>ビュー"
-                  %span= "<strong>#{yum.comments_count}</strong>コメント"
-                .action
-                  = link_to '編集する', edit_mypage_peco_path(yum.id)
-                  = link_to '削除する', destroy_pecophoto_mypage_path(:yum_id => yum.id), :method => :delete, :confirm => '本当に削除してもよろしいですか？'
+          = render :partial => '/yums/yum', :locals => {:yum => yum, :rank => nil, :my => true}
   .side
     = render :partial => 'mypages/profile', :locals => {:user => current_user}
 

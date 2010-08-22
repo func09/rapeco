@@ -17,18 +17,19 @@ ul.users {
   
   padding: 0px;
   
-  li.user {
+  li.userBox {
     
-    position: relative;
+    @include gray-frame;
     list-style: none;
-    border-bottom: 1px solid #000;
-    padding: 10px;
-    min-height: 60px;
+    
+    .inner {
+      min-height: 60px;
+    }
     
     .rank {
       position: absolute;
-      top: 5px;
-      left: 0;
+      top: 0px;
+      left: 0px;
       font-size: 12px;
       font-weight: bold;
       font-family: serif;
@@ -43,11 +44,7 @@ ul.users {
     
     .user-icon {
       position: absolute;
-      background: #FFF;
-      padding: 5px;
       width: 48px;
-      border: 2px solid #d1d1d1;
-      @include border-radius(4px,4px,4px,4px);
       img {
         width: 48px;
         height: 48px;
@@ -55,7 +52,7 @@ ul.users {
     }
     
     .user-info {
-      margin-left: 70px;
+      margin-left: 60px;
       .login {
         font-size: 15px;
         font-weight: bold;

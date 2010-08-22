@@ -1,20 +1,36 @@
-- title "ペコフォト - ラペコ 美味しそう！を共有するサービス"
-- content_for :submenu do
-  = render :partial => 'menu'
-%h1= @h1
-- cache @cache_key do
-  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
-  .thumbListBox
-    - @yums.each_with_index do |yum, index|
-      - case action_name
-      - when 'hot', 'popular'
-        - rank = @yums.offset + index + 1
-        = render :partial => 'yum', :locals => {:yum => yum, :rank => rank}
-      - else
-        = render :partial => 'yum', :locals => {:yum => yum, :rank => nil }
-  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
-  :javascript
-    if($.browser.msie){
-      $('.thumbBox:nth-child(5n)').css('margin-right','0px');
-    }
+- page_title = case action_name
+- when 'index' : 'すべてのペコフォト'
+- when 'recent' : '新着のペコフォト'
+- when 'hot' : '注目のペコフォト'
+- when 'popular' : '人気のペコフォト'
+- title "#{page_title} - ラペコ 美味しそう！を共有するサービス"
+.pecoSection
+  %h1= page_title
+  .mainBox
+    - cache @cache_key do
+      .thumbListBox
+        - @yums.each_with_index do |yum, index|
+          - case action_name
+          - when 'hot', 'popular'
+            - rank = @yums.offset + index + 1
+            = render :partial => 'yum', :locals => {:yum => yum, :rank => nil }
+          - else
+            = render :partial => 'yum', :locals => {:yum => yum, :rank => nil }
+      = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+  .sideBox
+    .navi
+      %ul
+        %li= link_to 'すべて', yums_path
+        %li= link_to '注目ペコフォト', hot_yums_path
+        %li= link_to '新着ペコフォト', recent_yums_path
+        %li= link_to '人気ペコフォト', popular_yums_path
+    .navi
+      %ul
+        %li
+          - tag_cloud(Yum.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class|
+            = link_to tag.name, { :tag => tag.name }, :class => css_class
+:javascript
+  if($.browser.msie){
+    $('.thumbBox:nth-child(5n)').css('margin-right','0px');
+  }
     

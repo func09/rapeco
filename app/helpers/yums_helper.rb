@@ -1,5 +1,7 @@
 module YumsHelper
   
+  include ActsAsTaggableOn::TagsHelper
+  
   def link_to_retweet(title,yum)
     if yum.user
       message = "ハラペコなう！ RT @#{yum.user.login} #{pecophoto_url(yum.uid)} #rapeco"

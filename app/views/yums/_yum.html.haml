@@ -1,29 +1,25 @@
-- rank = nil unless defined?(rank)
-- my = false unless defined?(my)
-.thumbBox(class="#{'hot' if (1..3).include?(rank)}")
-  .photoWrapper
-    .thumbPhoto
+.yumBox
+  .inner
+    .thumbBlock
       %a(href="#{yum_path(yum)}")
         = image_tag photo_url_with_yum(yum, :size => :thumb), :class => 'thumb'
-    - if rank
-      .rank
-        ="#{rank}位"
-  .meta(style="text-align: right;")
-    .title
-      %strong= truncate(yum.text, :length => 20)
-    .tags
-      = yum.tag_list
-    %span.count= "<strong>#{yum.yummy_count}</strong>ペコ"
-    %span.count= "<strong>#{yum.view_count}</strong>ビュー"
-    %br
-    %span.count= "<strong>#{yum.comments_count}</strong>コメント"
-    %br
-    = "at #{distance_of_time_in_words_to_now(yum.created_at)}前"
-    %br
-    - if my
-      = link_to '削除する', destroy_pecophoto_mypage_path(:yum_id => yum.id), :method => :delete, :confirm => '本当に削除してもよろしいですか？'
-    - else
-      - if yum.user
-        = "from #{link_to yum.user.login, user_path(yum.user)}"
-      - else
-        from twitter
+    .contentBlock
+      .author
+        = link_to image_tag(yum.user.profile_image_url, :class => 'icon20'), user_path(yum.user)
+        = link_to yum.user.login, user_path(yum.user)
+      .title= link_to((truncate(yum.text, :length => 50) || 'No Title'), yum_path(yum))
+      .date
+        = yum.created_at.strftime("%Y年%m月%d日 %H:%M")
+      .tags
+        キーワード：
+        = yum.tag_list
+      .meta
+        .count
+          %span= "<strong>#{yum.yummy_count}</strong>ペコ"
+          %span= "<strong>#{yum.view_count}</strong>ビュー"
+          %span= "<strong>#{yum.comments_count}</strong>コメント"
+      - if defined?(my) and my
+        .action
+          = link_to '編集する', edit_mypage_peco_path(yum.id)
+          = link_to '削除する', destroy_pecophoto_mypage_path(:yum_id => yum.id), :method => :delete, :confirm => '本当に削除してもよろしいですか？'
+        

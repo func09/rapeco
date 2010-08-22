@@ -17,7 +17,7 @@ html {
   }
 body {
   background-color: transparent;
-  width: 840px;
+  width: 960px;
   margin: 0 auto;
   color: #575149;
   font-size: 13px;
@@ -99,7 +99,6 @@ img.twitterIcon {
 
 /**/
 #container {
-  width: 100%;
   margin-top: 0px;
   padding: 0;
   border: none;
@@ -107,18 +106,8 @@ img.twitterIcon {
   }
 
 
-#footer {
-  background: #393536;
-  padding: 15px;
-  color: white;
-  text-shadow:0px 1px rgba(0,0,0,0.5);
-  }
-
 .backNav {
   margin: 10px 0;
-  }
-.pecoSection {
-  margin-top: 10px;
   }
     #remainCount { font-size: 14px; font-weight: bold;}
     #remainCount.go_green { color: green; }

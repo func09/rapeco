@@ -3,7 +3,7 @@ class YumsController < ApplicationController
   before_filter :login_required, :only => [:new, :create]
   skip_before_filter :verify_authenticity_token, :only => [:vote, :report]
   
-  @@per_page = 25
+  @@per_page = 10
   
   def new
     @yum = Yum.new
@@ -24,21 +24,21 @@ class YumsController < ApplicationController
   end
   
   def index
-    @h1 = "ペコフォト"
     @cache_key = cache_key(params.to_query, :expires_in => 1.minutes)
     unless read_fragment @cache_key
-      @yums = Yum.hot.paginate(:page => params[:page], :per_page => @@per_page)
+      @yums = Yum.search(:all, params[:tag]).paginate(
+        :page => params[:page],
+        :per_page => @@per_page)
       expire_fragment_with_cache_name(params.to_query)
     end
   end
   
   def recent
-    @h1 = "新着ペコフォト"
     @cache_key = cache_key(params.to_query, :expires_in => 1.minutes)
     @mode = :recent
     unless read_fragment @cache_key
-      @yums = Yum.recent.paginate(
-        :page => params[:page], 
+      @yums = Yum.search(:recent, params[:tag]).paginate(
+        :page => params[:page],
         :per_page => @@per_page)
       expire_fragment_with_cache_name(params.to_query)
     end
@@ -46,11 +46,10 @@ class YumsController < ApplicationController
   end
   
   def hot
-    @h1 = "注目ペコフォト"
     @cache_key = cache_key(params.to_query, :expires_in => 1.minutes)
     unless read_fragment @cache_key
-      @yums = Yum.hot.paginate(
-        :page => params[:page], 
+      @yums = Yum.search(:hot, params[:tag]).paginate(
+        :page => params[:page],
         :per_page => @@per_page)
       expire_fragment_with_cache_name(params.to_query)
     end
@@ -61,7 +60,7 @@ class YumsController < ApplicationController
     @h1 = "人気ペコフォト"
     @cache_key = cache_key(params.to_query, :expires_in => 1.minutes)
     unless read_fragment @cache_key
-      @yums = Yum.popular.find(
+      @yums = Yum.search(:popular, params[:tag]).find(
         :all, 
         :limit => 100).paginate(
           :page => params[:page], 

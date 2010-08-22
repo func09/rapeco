@@ -18,6 +18,14 @@ img.icon36 {
   width: 36px;
   height: 36px; }
 
+img.icon24 {
+  width: 24px;
+  height: 24px; }
+
+img.icon20 {
+  width: 20px;
+  height: 20px; }
+
 img.pecophoto_icon {
   width: 58px;
   height: 58px; }
@@ -147,18 +155,6 @@ img.pecophoto_icon {
 
 .subMenuBox {
   background: #5A534B;
-  -webkit-border-top-left-radius: 0px;
-  -webkit-border-top-right-radius: 0px;
-  -webkit-border-bottom-right-radius: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -moz-border-radius-topleft: 0px;
-  -moz-border-radius-topright: 0px;
-  -moz-border-radius-bottomright: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
   padding: 4px 8px; }
   .subMenuBox ul#subNav {
     list-style: none;
@@ -176,6 +172,56 @@ img.pecophoto_icon {
         text-decoration: none; }
         .subMenuBox ul#subNav li a:hover {
           color: #CCC; }
+
+#footer {
+  margin-bottom: 1em;
+  background: #393536;
+  padding: 15px;
+  color: white;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px; }
+
+#container {
+  background: #fff;
+  padding: 20px; }
+  #container h1 {
+    margin: 0px;
+    margin-bottom: 15px;
+    font-size: 18px; }
+
+.mainBox {
+  float: left;
+  width: 620px; }
+
+.sideBox {
+  float: right;
+  width: 280px; }
+  .sideBox .navi {
+    background: #EEE;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 15px;
+    width: 250px; }
 
 .thumbBox {
   float: left;
@@ -261,14 +307,62 @@ img.pecophoto_icon {
       filter: alpha(opacity=50);
       opacity: 0.5; }
 
-.pecoSection {
-  margin: 10px 0; }
-  .pecoSection .mainBox {
-    float: left;
-    width: 550px; }
-  .pecoSection .sideBox {
-    float: right;
-    width: 280px; }
+.yumBox {
+  position: relative;
+  background: #FFF;
+  margin-bottom: 10px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border: 5px solid #EEE; }
+  .yumBox > .inner {
+    padding: 15px;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #DDD; }
+  .yumBox .inner {
+    min-height: 150px; }
+  .yumBox .thumbBlock {
+    position: absolute;
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    background: #000000; }
+  .yumBox .contentBlock {
+    margin-left: 165px; }
+    .yumBox .contentBlock .date {
+      font-size: 11px;
+      color: #BBB; }
+    .yumBox .contentBlock .title {
+      font-family: serif;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 120%; }
+    .yumBox .contentBlock .tags {
+      font-size: 10px;
+      color: #CCC; }
+    .yumBox .contentBlock .meta {
+      position: absolute;
+      bottom: 15px; }
 
 .pecoPhotoBox {
   margin-bottom: 1em;
@@ -318,77 +412,32 @@ img.pecophoto_icon {
       max-width: 500px;
       max-height: 500px; }
 
-.sideBox .metaBox {
-  background: #FFF;
-  -webkit-border-top-left-radius: 8px;
-  -webkit-border-top-right-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-topleft: 8px;
-  -moz-border-radius-topright: 8px;
-  -moz-border-radius-bottomright: 8px;
-  -moz-border-radius-bottomleft: 8px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  padding: 15px;
-  width: 250px; }
-  .sideBox .metaBox .profileIcon {
+.sideBox .metaBox .profileIcon {
+  float: left;
+  margin-right: 10px;
+  width: 48px; }
+  .sideBox .metaBox .profileIcon img {
+    max-width: 48px;
+    max-height: 48px; }
+.sideBox .metaBox .profileLogin {
+  float: left;
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  width: 190px; }
+.sideBox .metaBox .section {
+  margin-bottom: 8px; }
+.sideBox .metaBox .counts {
+  margin-right: -15px; }
+  .sideBox .metaBox .counts span.count {
+    margin-right: 5px;
     float: left;
-    margin-right: 10px;
-    width: 48px; }
-    .sideBox .metaBox .profileIcon img {
-      max-width: 48px;
-      max-height: 48px; }
-  .sideBox .metaBox .profileLogin {
-    float: left;
-    padding: 0;
-    font-size: 14px;
-    font-weight: bold;
-    width: 190px; }
-  .sideBox .metaBox .section {
-    margin-bottom: 8px; }
-  .sideBox .metaBox .counts {
-    margin-right: -15px; }
-    .sideBox .metaBox .counts span.count {
-      margin-right: 5px;
-      float: left;
-      padding: 6px;
-      width: 67px;
-      display: block;
-      background: #EEE;
-      text-align: center;
-      font-weight: bold;
-      -webkit-border-top-left-radius: 4px;
-      -webkit-border-top-right-radius: 4px;
-      -webkit-border-bottom-right-radius: 4px;
-      -webkit-border-bottom-left-radius: 4px;
-      -moz-border-radius-topleft: 4px;
-      -moz-border-radius-topright: 4px;
-      -moz-border-radius-bottomright: 4px;
-      -moz-border-radius-bottomleft: 4px;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px; }
-  .sideBox .metaBox dl {
-    margin: 0px; }
-    .sideBox .metaBox dl dt {
-      margin-top: 12px;
-      font-weight: bold;
-      font-size: 12px; }
-    .sideBox .metaBox dl dd {
-      margin-left: 12px;
-      font-size: 12px; }
-  .sideBox .metaBox #btnPecopeco a {
+    padding: 6px;
+    width: 67px;
     display: block;
-    padding: 10px;
-    background: #F03565;
+    background: #EEE;
     text-align: center;
     font-weight: bold;
-    font-size: 16px;
-    color: #FFF;
     -webkit-border-top-left-radius: 4px;
     -webkit-border-top-right-radius: 4px;
     -webkit-border-bottom-right-radius: 4px;
@@ -401,6 +450,35 @@ img.pecophoto_icon {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px; }
+.sideBox .metaBox dl {
+  margin: 0px; }
+  .sideBox .metaBox dl dt {
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 12px; }
+  .sideBox .metaBox dl dd {
+    margin-left: 12px;
+    font-size: 12px; }
+.sideBox .metaBox #btnPecopeco a {
+  display: block;
+  padding: 10px;
+  background: #F03565;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #FFF;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px; }
 
 .commentsBox {
   padding: 15px;
@@ -475,16 +553,45 @@ img.pecophoto_icon {
 
 ul.users {
   padding: 0px; }
-  ul.users li.user {
+  ul.users li.userBox {
     position: relative;
-    list-style: none;
-    border-bottom: 1px solid #000;
-    padding: 10px;
-    min-height: 60px; }
-    ul.users li.user .rank {
+    background: #FFF;
+    margin-bottom: 10px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 5px solid #EEE;
+    list-style: none; }
+    ul.users li.userBox > .inner {
+      padding: 15px;
+      -webkit-border-top-left-radius: 4px;
+      -webkit-border-top-right-radius: 4px;
+      -webkit-border-bottom-right-radius: 4px;
+      -webkit-border-bottom-left-radius: 4px;
+      -moz-border-radius-topleft: 4px;
+      -moz-border-radius-topright: 4px;
+      -moz-border-radius-bottomright: 4px;
+      -moz-border-radius-bottomleft: 4px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+      border: 1px solid #DDD; }
+    ul.users li.userBox .inner {
+      min-height: 60px; }
+    ul.users li.userBox .rank {
       position: absolute;
-      top: 5px;
-      left: 0;
+      top: 0px;
+      left: 0px;
       font-size: 12px;
       font-weight: bold;
       font-family: serif;
@@ -506,30 +613,15 @@ ul.users {
       height: 25px;
       line-height: 25px;
       text-align: center; }
-    ul.users li.user .user-icon {
+    ul.users li.userBox .user-icon {
       position: absolute;
-      background: #FFF;
-      padding: 5px;
-      width: 48px;
-      border: 2px solid #d1d1d1;
-      -webkit-border-top-left-radius: 4px;
-      -webkit-border-top-right-radius: 4px;
-      -webkit-border-bottom-right-radius: 4px;
-      -webkit-border-bottom-left-radius: 4px;
-      -moz-border-radius-topleft: 4px;
-      -moz-border-radius-topright: 4px;
-      -moz-border-radius-bottomright: 4px;
-      -moz-border-radius-bottomleft: 4px;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-bottom-left-radius: 4px; }
-      ul.users li.user .user-icon img {
+      width: 48px; }
+      ul.users li.userBox .user-icon img {
         width: 48px;
         height: 48px; }
-    ul.users li.user .user-info {
-      margin-left: 70px; }
-      ul.users li.user .user-info .login {
+    ul.users li.userBox .user-info {
+      margin-left: 60px; }
+      ul.users li.userBox .user-info .login {
         font-size: 15px;
         font-weight: bold; }
 
@@ -621,47 +713,6 @@ button.postPhotoButon {
     position: absolute;
     top: 0;
     right: 0; }
-
-.yumsBox .yumBox {
-  position: relative;
-  background: #FFF;
-  padding: 15px;
-  margin-bottom: 10px;
-  -webkit-border-top-left-radius: 8px;
-  -webkit-border-top-right-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-topleft: 8px;
-  -moz-border-radius-topright: 8px;
-  -moz-border-radius-bottomright: 8px;
-  -moz-border-radius-bottomleft: 8px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px; }
-  .yumsBox .yumBox .thumbBlock {
-    float: left;
-    margin-right: 10px;
-    width: 150px;
-    height: 150px;
-    background: #000000; }
-  .yumsBox .yumBox .contentBlock {
-    float: left;
-    width: 350px; }
-    .yumsBox .yumBox .contentBlock .date {
-      font-size: 11px;
-      color: #BBB; }
-    .yumsBox .yumBox .contentBlock .title {
-      margin-top: 6px;
-      font-family: serif;
-      font-size: 18px;
-      font-weight: bold; }
-    .yumsBox .yumBox .contentBlock .tags {
-      font-size: 10px;
-      color: #CCC; }
-    .yumsBox .yumBox .contentBlock .meta {
-      position: absolute;
-      bottom: 15px; }
 
 .yumsBox .thumbBox:nth-child(5n) {
   margin-right: 22px; }

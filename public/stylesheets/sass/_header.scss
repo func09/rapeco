@@ -86,7 +86,7 @@
 .subMenuBox {
   //background: #534C46;
   background: #5A534B;
-  @include border-radius(0px, 0px, 4px, 4px);
+  //@include border-radius(0px, 0px, 4px, 4px);
   padding: 4px 8px;
   ul#subNav {
     list-style: none;

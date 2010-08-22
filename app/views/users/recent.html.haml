@@ -1,15 +1,17 @@
 - title "新着ユーザー - ラペコ 美味しそう！を共有するサービス"
-- content_for :submenu do
-  = render :partial => 'submenu'
 - cache @cache_key do
-  %h1 新着ユーザー
-  = will_paginate(@users)
-
-  %ul.users
-    - @users.each_with_index do |user, index|
-      = render :partial => 'user', :locals => {:user => user, :rank => nil}
-
-  = will_paginate(@users)
-    
+  .usersSection
+    %h1 新着ユーザー
+    .mainBox
+      %ul.users
+        - @users.each_with_index do |user, index|
+          = render :partial => 'user', :locals => {:user => user, :rank => nil}
+      = will_paginate(@users)
+    .sideBox
+      .navi
+        %ul
+          %li= link_to '注目順', hot_users_path
+          %li= link_to '新着順', recent_users_path
+        
 
 

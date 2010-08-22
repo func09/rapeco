@@ -1,0 +1,7 @@
+#footer {
+  margin-bottom: 1em;
+  background: #393536;
+  padding: 15px;
+  color: white;
+  @include border-radius(0px,0px,8px,8px);
+}
