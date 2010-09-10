@@ -1,3 +1,6 @@
+- content_for :head do
+  %meta(property="og:title" content="#{@yum.text}")
+  %link(rel="mixi-check-image" type="image/jpeg" href="#{photo_url_with_yum(@yum, :size => :large)}")
 - title "#{@yum.text} - ラペコ 美味しそう！を共有するサービス"
 - content_for :submenu do
   = render :partial => 'menu'
@@ -77,6 +80,10 @@
         .section
           %span#btnPecopeco
             = link_to_retweet 'twitterにつぶやく', @yum
+        .section
+          %a(href="http://mixi.jp/share.pl" class="mixi-check-button" data-key="37ffd80a39a326f6d4702a5860669ed621bf1b23" data-url="#{pecophoto_url(@yum)}" data-button="button-5") mixi check
+          %script(type="text/javascript" src="http://static.mixi.jp/js/share.js")
+          
         .section
           %dl
             %dt オリジナル画像のURL:

@@ -1,5 +1,5 @@
 !!!
-%html{:'xml:lang' => 'ja', :lang => 'ja'}
+%html(xmlns:og="http://ogp.me/ns#" xmlns:mixi="http://mixi-platform.com/ns#" xml:lang='ja' lang='ja')
   %head
     %title= h(yield(:title)) || "ラペコ 美味しそう！を共有するサービス"
     = stylesheet_link_tag 'application','main','jquery.jgrowl'
