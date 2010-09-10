@@ -81,9 +81,8 @@
           %span#btnPecopeco
             = link_to_retweet 'twitterにつぶやく', @yum
         .section
-          =#%a(href="http://mixi.jp/share.pl" class="mixi-check-button" data-key="37ffd80a39a326f6d4702a5860669ed621bf1b23" data-url="#{yum_url(@yum)}" data-button="button-5") mixi check
-          <a href="javascript:void(0);" onclick="window.open('http://mixi.jp/share.pl?u=#{yum_url(@yum)}&k=37ffd80a39a326f6d4702a5860669ed621bf1b23','share',['width=632','height=456','location=yes','resizable=yes','toolbar=no','menubar=no','scrollbars=no','status=no'].join(','));"><img src="http://img.mixi.jp/img/basic/mixicheck_entry/bt_check_5.png" /></a>
-          =# javascript_include_tag 'http://static.mixi.jp/js/share.js'
+          <a href="http://mixi.jp/share.pl" class="mixi-check-button" data-key='37ffd80a39a326f6d4702a5860669ed621bf1b23' data-button="button-5">Check</a>
+          =javascript_include_tag 'http://static.mixi.jp/js/share.js'
         .section
           %dl
             %dt オリジナル画像のURL:
