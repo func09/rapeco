@@ -10,7 +10,7 @@
           %p.notice= "まだ @#{@user.login} のペコフォトはありません"
         - else
           - @yums.each_with_index do |yum,index|
-            = render :partial => '/yums/yum', :locals => {:yum => yum, :rank => nil, :my => true}
+            = render :partial => '/yums/yum', :locals => {:yum => yum, :rank => nil, :my => logged_in? && @user == current_user}
     .side
       = render :partial => 'profile', :locals => {:user => @user}
 
