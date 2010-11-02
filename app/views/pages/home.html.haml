@@ -1,5 +1,5 @@
 - title "ラペコ 美味しそう！を共有するサービス"
-- cache @cache_key do
+- cache @cache_key, :expires_in => 1.minute do
   /
     = Time.zone.now
   :javascript

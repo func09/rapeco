@@ -9,7 +9,7 @@ config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
 config.action_view.cache_template_loading            = true
 
-ActionController::Base.cache_store = :mem_cache_store, 'localhost:1978', {:namespace => 'rapeco'} # use TokyoTyrant
+ActionController::Base.cache_store = :mem_cache_store, 'localhost', {:namespace => 'rapeco'}
 
 # See everything in the log (default is :info)
 # config.log_level = :debug
@@ -18,7 +18,7 @@ ActionController::Base.cache_store = :mem_cache_store, 'localhost:1978', {:names
 # config.logger = SyslogLogger.new
 
 # Use a different cache store in production
-config.cache_store = :mem_cache_store, 'localhost:1978', {:namespace => 'rapeco'} # use TokyoTyrant
+config.cache_store = :mem_cache_store, 'localhost', {:namespace => 'rapeco'}
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host = "http://assets.example.com"

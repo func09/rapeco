@@ -4,7 +4,7 @@
 - title "#{@yum.text} - ラペコ 美味しそう！を共有するサービス"
 - content_for :submenu do
   = render :partial => 'menu'
-- cache @cache_key do
+- cache @cache_key, :expires_in => 1.minute do
   .backNav
     %a(href="#" onclick="history.back(); return false;") &laquo; 前のページに戻る
   

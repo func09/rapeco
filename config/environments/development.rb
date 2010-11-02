@@ -12,7 +12,7 @@ config.whiny_nils = true
 config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
-# config.cache_store = :mem_cache_store, 'localhost:1978', {:namespace => 'rapeco'}
+#config.cache_store = :mem_cache_store, 'localhost', {:namespace => 'rapeco'}
 # ActionController::Base.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"
 # ActionController::Base.cache_store = :mem_cache_store, "localhost:1978", {:namespace => 'rapeco'}
 

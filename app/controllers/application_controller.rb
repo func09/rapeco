@@ -4,7 +4,9 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
+  
+  before_filter :cache_key
+  
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
@@ -23,15 +25,8 @@ class ApplicationController < ActionController::Base
     @impotant_notice ||= Notice.published.impotants.first
   end
 
-  # @param [Integer] options[:expires_in] sec
-  def cache_key(name, options = {})
-    cache_key = nil
-    if options[:expires_in]
-      ts = Time.zone.now.to_i / options[:expires_in].to_i
-      cache_key = "#{name}+#{ts}"
-    else
-      cache_key = name
-    end
+  def cache_key
+    @cache_key ||= request.request_uri
   end
   
   def expire_fragment_with_cache_name(cache_key)
