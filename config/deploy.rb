@@ -18,21 +18,11 @@ set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 namespace :deploy do
-  task :start, :roles => :app, :except => { :no_release => true } do 
-    run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
+  
+  task :restart, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
   end
-  task :stop, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill `cat #{unicorn_pid}` || echo 'no pid file'"
-  end
-  task :graceful_stop, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}` || echo 'no pid file'"
-  end
-  task :reload, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}` || echo 'no pid file'"
-  end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    reload
-  end
+   
   desc "Copy shared config files to current application."
   task :copy_config_file, :roles => :app do
     run <<-CMD
@@ -70,5 +60,5 @@ after 'deploy:update_code', 'deploy:copy_config_file'
 after "deploy:symlink", "deploy:update_crontab"
 
 after 'deploy:finalize_update' do
-  run "cd #{latest_release} && bundle install #{shared_path}/vendor --without development,test && bundle lock"
+  run "cd #{latest_release} && bundle install #{shared_path}/vendor --without development,test"
 end

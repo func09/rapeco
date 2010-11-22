@@ -25,11 +25,11 @@ class Yum < ActiveRecord::Base
     :conditions => ['not_yummy_image = ?', false]
   
   named_scope :recent, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 24.hours.ago], 
+    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 3.days.ago], 
     :order => 'created_at DESC'        
     
   named_scope :hot, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 24.hours.ago], 
+    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 3.days.ago], 
     :order => 'yummy_point DESC, updated_at DESC'
               
   named_scope :popular, 
