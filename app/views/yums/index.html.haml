@@ -3,7 +3,7 @@
   = render :partial => 'menu'
 %h1= @h1
 - cache @cache_key, :expires_in => 1.minute do
-  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+  = will_paginate(@yums)
   .thumbListBox
     - @yums.each_with_index do |yum, index|
       - case action_name
@@ -12,7 +12,7 @@
         = render :partial => 'yum', :locals => {:yum => yum, :rank => rank}
       - else
         = render :partial => 'yum', :locals => {:yum => yum, :rank => nil }
-  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+  = will_paginate(@yums)
   :javascript
     if($.browser.msie){
       $('.thumbBox:nth-child(5n)').css('margin-right','0px');

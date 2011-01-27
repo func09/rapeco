@@ -1,7 +1,7 @@
 - title "@#{params[:id]} さんのページ - ラペコ 美味しそう！を共有するサービス"
 - cache @cache_key, :expires_in => 1.minute do
 
-  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+  = will_paginate @yums
 
   .userContent
     .main
@@ -14,5 +14,5 @@
     .side
       = render :partial => 'profile', :locals => {:user => @user}
 
-  = will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+  = will_paginate @yums
 

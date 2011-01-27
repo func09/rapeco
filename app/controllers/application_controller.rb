@@ -6,11 +6,6 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default destination
   end
   
-  # /:uid でのアクセスをプロクシする
-  def pecophoto_proxy
-    redirect_to yum_url(params[:uid])
-  end
-  
   helper_method :impotant_notice
   def impotant_notice
     @impotant_notice ||= Notice.published.impotants.first

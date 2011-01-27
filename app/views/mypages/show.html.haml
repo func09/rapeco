@@ -1,6 +1,6 @@
 - title "あなたのペコフォト - ラペコ 美味しそう！を共有するサービス"
 %h1 あなたのペコフォト
-= will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+= will_paginate(@yums)
 
 .myContent
   .main
@@ -13,5 +13,5 @@
   .side
     = render :partial => 'mypages/profile', :locals => {:user => current_user}
 
-= will_paginate(@yums, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+= will_paginate(@yums)
 

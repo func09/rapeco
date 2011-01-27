@@ -2,16 +2,16 @@
   .user-icon
     = link_to image_tag(user.profile_image_url), user_path(user)
   .user-info
-    .login= link_to user.login, user_path(user)
-    .description= user.description
+    .login=raw link_to user.login, user_path(user)
+    .description=raw user.description
     .points
-      %strong= user.yums.enables.sum(:view_count)
+      %strong=raw user.yums.enables.sum(:view_count)
       views
-      %strong= user.receive_comments_count
+      %strong=raw user.receive_comments_count
       comments
-      %strong= user.yums.enables.count
+      %strong=raw user.yums.enables.count
       photos
-      %strong= user.yums.enables.sum(:yummy_count)
+      %strong=raw user.yums.enables.sum(:yummy_count)
       pecos
   - if rank
     .rank= rank

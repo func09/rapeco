@@ -1,6 +1,6 @@
 - title "コメント - ラペコ 美味しそう！を共有するサービス"
 %h1 コメント
-= will_paginate(@comments, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+= will_paginate(@comments)
 
 .myContent
   .main
@@ -23,6 +23,4 @@
   .side
     = render :partial => 'mypages/profile', :locals => {:user => current_user}
 
-
-      
-= will_paginate(@comments, :page_links => false, :previous_label => '&laquo; 前へ', :next_label => '次へ &raquo;', :renderer => SimpleLinkRenderer)
+= will_paginate(@comments)

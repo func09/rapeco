@@ -2,6 +2,7 @@
 %html(xmlns:og="http://ogp.me/ns#" xmlns:mixi="http://mixi-platform.com/ns#" xml:lang='ja' lang='ja')
   %head
     %title= h(yield(:title)) || "ラペコ 美味しそう！を共有するサービス"
+    = csrf_meta_tag
     = stylesheet_link_tag 'application','main','jquery.jgrowl'
     = stylesheet_link_tag 'style'
     = javascript_include_tag :defaults
@@ -14,7 +15,6 @@
     /[if lte IE 7 ]
       = stylesheet_link_tag 'ie7'
       = javascript_include_tag 'IE7'
-      = csrf_meta_tag
     :javascript
       $(function(){
         $("img").lazyload({
@@ -55,7 +55,7 @@
       - if impotant_notice
         .impotant_notice
           重要なお知らせ：
-          = impotant_notice.body
+          =raw impotant_notice.body
           = "（#{impotant_notice.created_at.to_s(:simple_date)}）"
       / end impotant notice
       
@@ -67,7 +67,8 @@
           %li.about= link_to 'ラペコについて', about_path
           %li.search= link_to '検索', search_path
           %li.side= link_to 'ペコフォトを投稿', new_yum_path
-          %li.side.mypage(style='display:none;')= link_to 'マイページ', mypage_url
+          - if logged_in?
+            %li.side.mypage= link_to 'マイページ', mypage_url
       .subMenuBox
         %ul#subNav
           = yield(:submenu)

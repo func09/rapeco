@@ -2,52 +2,44 @@ Rapeco2::Application.routes.draw do
   
   root :to => 'pages#home'
   match '/logout' => 'sessions#destroy'
-  match '/about' => 'pages#about', :as => :about
-  match '/contact' => 'pages#contact', :as => :contact
-  match '/campaign_delicam' => 'pages#campaign_delicam', :as => :campaign_delicam
-  match '/search' => 'pages#search', :as => :search
+  match '/about' => 'pages#about',                        :as => :about
+  match '/contact' => 'pages#contact',                    :as => :contact
+  match '/campaign_delicam' => 'pages#campaign_delicam',  :as => :campaign_delicam
+  match '/search' => 'pages#search',                      :as => :search
   
   resource :help do
-    member do
-      get :iphone
-      get :report
-      get :biginner
-    end
+    get :iphone,    :on => :member
+    get :report,    :on => :member
+    get :biginner,  :on => :member
   end
 
-  resources :yums do
-    collection do
-      get "hot"
-      get "recent"
-      get "popular"
-    end
-    member do
-      put 'vote'
-      put 'report'
-    end
+  resources :yums, :path => '/pecos' do
+    get "hot",      :on => :collection
+    get "recent",   :on => :collection
+    get "popular",  :on => :collection
+    put 'vote',     :on => :member
+    put 'report',   :on => :member
     resources :comments, :only => [:create]
   end
 
   resources :users do
-    collection do
-      get :recent
-      get :hot
-    end
+    get :recent,    :on => :collection
+    get :hot,       :on => :collection
   end
 
-  resource :mypage do
-    resources :comments
+  resource :mypage, :path => '/my' do
+    delete 'destroy_pecophoto', :on => :member
+    resources :comments, :only => [:index], :controller => 'mypages/comments'
   end
 
   namespace :ajax do
     resource :account do
-      member do
-        get :verify_logged_in
-        get :html_user_nav
-      end
+      get :verify_logged_in, :on => :member
+      get :html_user_nav, :on => :member
     end
   end
 
-  match '/:uid' => 'application#pecophoto_proxy', :as => :pecophoto, :uid => /[0-9a-zA-Z]{6,8}/
+  match '/:uid' => redirect("/pecos/%{uid}"), :constraints => {:uid => /[0-9a-zA-Z]{6,8}/}, :as => :pecophoto
+  
 
 end

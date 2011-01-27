@@ -21,7 +21,7 @@
         %h2
           今注目のペコフォト
           %span.moreLink
-            = link_to 'もっと見る &raquo;', hot_yums_path
+            = link_to raw("もっと見る &raquo;"), hot_yums_path
         .thumbListBox
           - @hot_yums.each_with_index do |yum,index|
             = render :partial => '/yums/yum', :locals => {:yum => yum}
@@ -31,7 +31,7 @@
         %h2
           新着のペコフォト
           %span.moreLink
-            = link_to 'もっと見る &raquo;', recent_yums_path
+            = link_to raw("もっと見る &raquo;"), recent_yums_path
         .thumbListBox
           - @recent_yums.each_with_index do |yum,index| 
             = render :partial => '/yums/yum', :locals => {:yum => yum}
@@ -82,7 +82,7 @@
               %time(datetime="#{notice.published_at.to_s(:simple_date)}")
                 = notice.published_at.to_s(:simple_date)
               .title= notice.title
-              .body= notice.body
+              .body=raw notice.body
       / end Notices
       
       / begin Hot Users

@@ -66,14 +66,14 @@
           .profileIcon
             = image_tag @yum.user.profile_image_url
           .profileLogin
-            = "@#{link_to @yum.user.login, user_path(@yum.user)}"
+            =raw "@#{link_to @yum.user.login, user_path(@yum.user)}"
             %br
             = "at #{distance_of_time_in_words_to_now(@yum.uploaded_at)}前"
           
         .section.counts
-          %span.count= "#{@yum.comments_count}<br />コメント"
-          %span.count= "#{@yum.yummy_count}<br />ペコペコ"
-          %span.count= "#{@yum.view_count}<br />ビュー"
+          %span.count=raw "#{@yum.comments_count}<br />コメント"
+          %span.count=raw "#{@yum.yummy_count}<br />ペコペコ"
+          %span.count=raw "#{@yum.view_count}<br />ビュー"
         .section
           %span#btnPecopeco
             = link_to 'ペコペコになった！', vote_yum_path(@yum), :method => :put

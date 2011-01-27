@@ -29,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
     :collection => {
       :recent => :get,
       :hot => :get,}
+  
   map.resource :mypage, 
     :as => 'my', 
     :member => {

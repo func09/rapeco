@@ -5,7 +5,7 @@
     .profileIcon
       = image_tag user.profile_image_url
     .profileLogin
-      = "@#{user.login}"
+      =raw "@#{user.login}"
   .box
     = user.description
   .box

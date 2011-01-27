@@ -14,10 +14,10 @@ class Yum < ActiveRecord::Base
   has_friendly_id :uid
   
   # Default Values
-  #default_value_for :uid do
-  #  Forgery(:basic).text(:at_least => 6, :at_most => 6)
-  #end
-  #default_value_for :tweetable, :true
+  default_value_for :uid do
+    Forgery(:basic).text(:at_least => 6, :at_most => 6)
+  end
+  default_value_for :tweetable, :true
   
   # Validations
   validates_presence_of :photo_service
@@ -32,7 +32,17 @@ class Yum < ActiveRecord::Base
   scope :hot, enables.where(['created_at >= ?', 7.days.ago]).order('yummy_point DESC, updated_at DESC')
   scope :popular, where(:not_yummy_image => false).where(['created_at >= ?', 12.month.ago]).order('yummy_point DESC, updated_at DESC')
   
+  # Callbacks
   before_save :calc_yummy_point
+  before_validation(:on => :create) do
+    if self.upload_image
+      # TwitPicへアップロード
+      res = upload_to_twitpic(self.upload_image.tempfile)
+      self.photo_service = 'twitpic'
+      self.photo_url = res["url"]
+      self.uploaded_at = Time.now
+    end
+  end
   
   def view!
     self.increment!(:view_count)
@@ -55,20 +65,6 @@ class Yum < ActiveRecord::Base
   def image_url(options = {:size => :thumb})
     photo = PhotoService.get_instance(self.photo_service, self.photo_url)
     return photo.image_url(:size)
-  end
-  
-  # 新規作成時の検証前処理
-  def before_validation_on_create
-    
-    if self.upload_image
-      # TwitPicへアップロード
-      res = upload_to_twitpic(self.upload_image)
-      self.photo_service = 'twitpic'
-      self.photo_url = res["url"]
-      self.uploaded_at = Time.now
-    else
-    end
-    
   end
   
   # 新規作成後
