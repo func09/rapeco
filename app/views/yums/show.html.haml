@@ -91,7 +91,7 @@
             %dd= link_to '食べられない写真を報告する', report_yum_path(@yum), :method => :put
         %h3 最近の投稿
         .box
-          - for yum in @yum.user.yums.recented.limited(12)
+          - for yum in @yum.user.yums.recented.limit(12)
             %a(href="#{yum_path(yum)}")
               = image_tag photo_url_with_yum(yum, :size => :thumb), :class => 'pecophoto_icon'
       

@@ -1,5 +1,4 @@
 class Notice < ActiveRecord::Base
-  include Pacecar
   TYPES = %w{NoticeNew NoticeMedia}
   validates_presence_of :title
   

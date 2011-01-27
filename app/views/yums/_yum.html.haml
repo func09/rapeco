@@ -9,17 +9,20 @@
       .rank
         ="#{rank}位"
   .meta(style="text-align: right;")
-    %span.count= "<strong>#{yum.yummy_count}</strong>ペコ"
-    %span.count= "<strong>#{yum.view_count}</strong>ビュー"
+    %span.count
+      %strong #{yum.yummy_count}ペコ
+    %span.count
+      %strong #{yum.view_count}ビュー
     %br
-    %span.count= "<strong>#{yum.comments_count}</strong>コメント"
+    %span.count
+      %strong #{yum.comments_count}コメント
     %br
-    = "at #{distance_of_time_in_words_to_now(yum.created_at)}前"
+    at #{distance_of_time_in_words_to_now(yum.created_at)}前
     %br
     - if my
       = link_to '削除する', destroy_pecophoto_mypage_path(:yum_id => yum.id), :method => :delete, :confirm => '本当に削除してもよろしいですか？'
     - else
       - if yum.user
-        = "from #{link_to yum.user.login, user_path(yum.user)}"
+        from #{link_to yum.user.login, user_path(yum.user)}
       - else
         from twitter

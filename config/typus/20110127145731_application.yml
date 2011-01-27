@@ -1,0 +1,44 @@
+# Typus Models Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+Comment:
+  fields:
+    default: user, yum, comment, to_user
+    form: user_id, yum_id, comment, to_user_id
+  order_by: -created_at
+  relationships: to_user, user, yum
+#  filters: created_at
+  search: 
+  application: Rapeco2
+
+Notice:
+  fields:
+    default: type, title, body, published_at, hidden, impotant
+    form: type, title, body, published_at, hidden, impotant
+  order_by: 
+  relationships: 
+  filters: 
+  search: title
+  application: Rapeco2
+
+User:
+  fields:
+    default: login, name, location, description, profile_image_url, yums_count, comments_count, receive_comments_count
+    show: login, name
+  order_by: 
+  relationships: comments, receive_comments, yums
+  filters: 
+  search: name
+  application: Rapeco2
+
+Yum:
+  fields:
+    default: photo_service, photo_url, view_count, yummy_count, yummy_point, not_yummy_image, report_count, uploaded_at, uid, text, comments_count
+    form: photo_service, photo_url, view_count, yummy_count, yummy_point, not_yummy_image, report_count, uploaded_at, uid, text, comments_count
+  order_by: -created_at
+  relationships: # comments, user
+  filters: 
+  search: 
+  application: Rapeco2
+

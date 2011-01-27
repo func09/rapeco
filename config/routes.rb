@@ -1,58 +1,53 @@
-ActionController::Routing::Routes.draw do |map|
+Rapeco2::Application.routes.draw do
   
-  map.root :controller => :pages, :action => :home
-  map.about "/about", :controller => :pages, :action => :about
-  map.contact "/contact", :controller => :pages, :action => :contact
-  map.campaign_delicam "/campaign_delicam", :controller => 'pages', :action => 'campaign_delicam'
-  map.search "/search", :controller => :pages, :action => :search
+  root :to => 'pages#home'
+  match '/logout' => 'sessions#destroy'
+  match '/about' => 'pages#about', :as => :about
+  match '/contact' => 'pages#contact', :as => :contact
+  match '/campaign_delicam' => 'pages#campaign_delicam', :as => :campaign_delicam
+  match '/search' => 'pages#search', :as => :search
   
-  map.resource :help, 
-    :only => [:show], 
-    :member => {
-      :biginner => :get,
-      :iphone => :get,
-      :report => :get,}
-  
-  map.resources :yums, 
-    :as => 'pecos', 
-    :collection => {
-      :recent => :get,
-      :hot => :get,
-      :popular => :get,},
-    :member => {
-      :vote => :put,
-      :report => :put, } do |yums|
-      yums.resources :comments, :only => [:create]
+  resource :help do
+    member do
+      get :iphone
+      get :report
+      get :biginner
+    end
   end
-  
-  map.resources :users,
-    :collection => {
-      :recent => :get,
-      :hot => :get,}
-  map.resource :mypage, 
-    :as => 'my', 
-    :member => {
-      :destroy_pecophoto => :delete} do |my|
-        my.resources :comments, :only => [:index], :controller => 'mypages/comments'
+
+  resources :yums do
+    collection do
+      get "hot"
+      get "recent"
+      get "popular"
+    end
+    member do
+      put 'vote'
+      put 'report'
+    end
+    resources :comments, :only => [:create]
   end
-  
-  map.namespace :ajax do |ajax|
-    ajax.resource :account, 
-      :member => {
-        :verify_logged_in => :get,
-        :html_user_nav => :get,}
+
+  resources :users do
+    collection do
+      get :recent
+      get :hot
+    end
   end
-  
-  map.pecophoto '/:uid', :controller => :application, :action => :pecophoto_proxy, :uid => /[0-9a-zA-Z]{6,8}/
-  
-  map.namespace :admin do |admin|
-    admin.root :controller => 'dashboards', :action => 'show'
-    admin.resources :notices, :active_scaffold => true
-    admin.resources :yums, :active_scaffold => true
-    admin.resources :users, :active_scaffold => true
-    admin.resources :comments, :active_scaffold => true
-    #admin.resources :tags, :active_scaffold => true
-    #admin.resources :comments, :active_scaffold => true
+
+  resource :mypage do
+    resources :comments
   end
-  
+
+  namespace :ajax do
+    resource :account do
+      member do
+        get :verify_logged_in
+        get :html_user_nav
+      end
+    end
+  end
+
+  match '/:uid' => 'application#pecophoto_proxy', :as => :pecophoto, :uid => /[0-9a-zA-Z]{6,8}/
+
 end

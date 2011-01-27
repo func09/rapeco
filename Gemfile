@@ -1,22 +1,29 @@
 source :gemcutter
 
-gem 'rails', '2.3.8', :require => nil
+gem 'rails', '3.0.3', :require => nil
 
 gem 'configatron'
-gem 'twitter-auth'
+
+gem 'twitter-auth', :require => 'twitter_auth/engine', :git => 'git://github.com/func09/twitter-auth.git', :branch => 'rails_3'
+gem 'default_value_for', :git => 'git://github.com/FooBarWidget/default_value_for.git'
+
 gem 'forgery'
-gem 'whenever', '0.4.1'
+gem 'whenever'
 gem 'json'
 gem 'oauth'
 gem 'ezcrypto'
 gem 'haml'
 gem 'mime-types'
-gem 'pacecar', '1.2.0'
-gem 'annotate'
 gem 'backup'
+gem 'will_paginate', '~> 3.0.pre2'
+gem "friendly_id"
+gem "jquery-rails"
+gem 'typus', :git => 'git://github.com/fesplugas/typus.git'
+gem 'rack-cache', :require => 'rack/cache'
 
 group :development do
-  gem 'sqlite3-ruby', '1.2.4', :require => 'sqlite3'
+  gem 'annotate'
+  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'memcache-client', :require => 'memcache'
 end
 
@@ -26,7 +33,13 @@ group :production do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'webrat'
   gem 'rspec-rails'
+  gem 'autotest'
+  gem 'factory_girl_rails'
+  gem 'shoulda'
+  gem 'rcov'
+  gem 'capybara'
+  gem 'steak'
 end
 

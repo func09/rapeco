@@ -2,7 +2,7 @@ require 'open-uri'
 require 'twitpic'
 require 'twitpic2'
 class Yum < ActiveRecord::Base
-  include Pacecar
+  
   include ActionView::Helpers::TextHelper
   
   has_many :comments
@@ -25,16 +25,14 @@ class Yum < ActiveRecord::Base
     :conditions => ['not_yummy_image = ?', false]
   
   named_scope :recent, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 3.days.ago], 
+    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 7.days.ago], 
     :order => 'created_at DESC'        
     
   named_scope :hot, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 3.days.ago], 
+    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 7.days.ago], 
     :order => 'yummy_point DESC, updated_at DESC'
-              
-  named_scope :popular, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ? AND yummy_count > 0 AND view_count >= 10', false, 3.month.ago], 
-    :order => 'yummy_point DESC, updated_at DESC'
+  
+  scope :popular, where(:not_yummy_image => false).where(['created_at >= ?', 12.month.ago]).order('yummy_point DESC, updated_at DESC')
   
   validates_presence_of :photo_service
   validates_presence_of :photo_url

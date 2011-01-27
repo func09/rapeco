@@ -1,0 +1,9 @@
+# Typus Roles Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+admin:
+  Comment: read, delete
+  Notice: create, read, update, delete
+  User: read, update, delete
+  Yum: read, update, delete

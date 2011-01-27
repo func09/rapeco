@@ -1,6 +1,4 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
   # @param [Hash<Symbol>] options
   # @option :size :thumb or large
   def photo_url_with_yum(yum, options = {:size => :thumb} )
@@ -35,5 +33,4 @@ module ApplicationHelper
     # その場合は空文字を返す、もしくはNOIMAGE
     return ""
   end
-  
 end

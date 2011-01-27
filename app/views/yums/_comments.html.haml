@@ -1,18 +1,20 @@
 / beggin commentsBox
 .commentsBox
   
-  %h3 コメントする
-  / begin comment-new
-  .comment-new
-    - form_for yum.comments.build, :url => yum_comments_path(yum) do |form|
-      = form.hidden_field :yum_id
-      %dl
-        %dd.cooment= form.text_area :comment
-        %dd.tweet
-          = form.check_box :will_tweet
-          = form.label :will_tweet, 'ツイッターにつぶやく'
-        %dd.submit= form.submit 'コメントを投稿する'
-  / end comment-new
+  %h3 コメント
+  - if logged_in?
+    / begin comment-new
+    .comment-new
+      - new_comment = yum.comments.new
+      - form_for new_comment, :url => yum_comments_path(yum) do |form|
+        = form.hidden_field :yum_id
+        %dl
+          %dd.cooment= form.text_area :comment
+          %dd.tweet
+            = form.check_box :will_tweet
+            = form.label :will_tweet, 'ツイッターにつぶやく'
+          %dd.submit= form.submit 'コメントを投稿する'
+    / end comment-new
   
   / begin comments
   %ul.comments

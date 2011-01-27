@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  include Pacecar
+  
   belongs_to :yum, :counter_cache => true, :foreign_key => 'yum_id'
 
   default_scope :order => 'created_at ASC'

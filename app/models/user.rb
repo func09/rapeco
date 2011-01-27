@@ -1,5 +1,4 @@
 class User < TwitterAuth::GenericUser
-  include Pacecar
   has_friendly_id :login
   
   has_many :yums, :conditions => ['not_yummy_image = ?',false]
