@@ -1,19 +1,26 @@
 class Comment < ActiveRecord::Base
   
+  # Relations
   belongs_to :yum, :counter_cache => true, :foreign_key => 'yum_id'
-
-  default_scope :order => 'created_at ASC'
-
   belongs_to :user, :counter_cache => true
   belongs_to :to_user, :class_name => 'User', :counter_cache => :receive_comments_count
-  attr_accessor :will_tweet
   
+  # Validations
   validates_presence_of :user_id
   validates_length_of :comment, :in => 1..140
   
+  # Attributes
+  attr_accessor :will_tweet
+  default_value_for :comment do
+    "ハラペコなう！"
+  end
+  
+  # Callback
   after_create :tweet
   before_validation_on_create :check_to_user
   
+  # Scope
+  default_scope :order => 'created_at ASC'
   named_scope :recent,
     :order => 'created_at DESC'
   
@@ -21,9 +28,6 @@ class Comment < ActiveRecord::Base
   named_scope :exclude_self,
     :conditions => ['user_id != to_user_id']
   
-  default_value_for :comment do
-    "ハラペコなう！"
-  end
   
   def will_tweet?
     self.will_tweet == '1'

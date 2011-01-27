@@ -21,18 +21,10 @@ gem "jquery-rails"
 gem 'typus', :git => 'git://github.com/fesplugas/typus.git'
 gem 'rack-cache', :require => 'rack/cache'
 
-group :development do
+group :development, :test do
   gem 'annotate'
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'memcache-client', :require => 'memcache'
-end
-
-group :production do
-  gem 'mysql'
-  gem 'memcache-client', :require => 'memcache'
-end
-
-group :test do
   gem 'webrat'
   gem 'rspec-rails'
   gem 'autotest'
@@ -42,4 +34,10 @@ group :test do
   gem 'capybara'
   gem 'steak'
 end
+
+group :production do
+  gem 'mysql'
+  gem 'memcache-client', :require => 'memcache'
+end
+
 

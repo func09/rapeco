@@ -5,39 +5,32 @@ class Yum < ActiveRecord::Base
   
   include ActionView::Helpers::TextHelper
   
-  has_many :comments
-  has_friendly_id :uid
+  # Relations
   belongs_to :user, :counter_cache => true
+  has_many :comments
   
-  attr_accessor :tweetable
-  attr_accessor :upload_image
+  # Attributes
+  attr_accessor :tweetable, :upload_image
+  has_friendly_id :uid
   
-  default_value_for :uid do
-    Forgery(:basic).text(:at_least => 6, :at_most => 6)
-  end
-
-  default_value_for :tweetable, :true
+  # Default Values
+  #default_value_for :uid do
+  #  Forgery(:basic).text(:at_least => 6, :at_most => 6)
+  #end
+  #default_value_for :tweetable, :true
   
-  named_scope :recented,
-    :order => 'created_at DESC'
-  
-  named_scope :enables,
-    :conditions => ['not_yummy_image = ?', false]
-  
-  named_scope :recent, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 7.days.ago], 
-    :order => 'created_at DESC'        
-    
-  named_scope :hot, 
-    :conditions => ['not_yummy_image = ? AND created_at >= ?', false, 7.days.ago], 
-    :order => 'yummy_point DESC, updated_at DESC'
-  
-  scope :popular, where(:not_yummy_image => false).where(['created_at >= ?', 12.month.ago]).order('yummy_point DESC, updated_at DESC')
-  
+  # Validations
   validates_presence_of :photo_service
   validates_presence_of :photo_url
   validates_presence_of :uploaded_at
   validates_uniqueness_of :photo_url
+  
+  # Scope
+  scope :recented, order('created_at DESC')
+  scope :enables, where(['not_yummy_image = ?', false])
+  scope :recent, enables.where(['created_at >= ?', 7.days.ago]).recented
+  scope :hot, enables.where(['created_at >= ?', 7.days.ago]).order('yummy_point DESC, updated_at DESC')
+  scope :popular, where(:not_yummy_image => false).where(['created_at >= ?', 12.month.ago]).order('yummy_point DESC, updated_at DESC')
   
   before_save :calc_yummy_point
   
