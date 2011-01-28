@@ -5,7 +5,7 @@ set :application, "rapeco"
 set :scm, :git
 set :user, "app"
 set :use_sudo, false
-set :branch, "master"
+set :branch, "release"
 set :deploy_via, :copy
 set :deploy_to, "/home/app/deploy/#{application}"
 
@@ -13,16 +13,26 @@ role :web, "rapeco.jp"
 role :app, "rapeco.jp"
 role :db,  "rapeco.jp", :primary => true
 
-set :unicorn_binary, "/usr/bin/unicorn_rails"
+set :unicorn_binary, "bundle exec unicorn_rails"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 namespace :deploy do
-  
-  task :restart, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
+  task :start, :roles => :app, :except => { :no_release => true } do 
+    run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
   end
-   
+  task :stop, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} kill `cat #{unicorn_pid}` || echo 'no pid file'"
+  end
+  task :graceful_stop, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}` || echo 'no pid file'"
+  end
+  task :reload, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}` || echo 'no pid file'"
+  end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    reload
+  end
   desc "Copy shared config files to current application."
   task :copy_config_file, :roles => :app do
     run <<-CMD

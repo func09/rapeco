@@ -3,6 +3,7 @@ source :gemcutter
 gem 'rails', '3.0.3', :require => nil
 
 gem 'configatron'
+gem 'unicorn'
 
 gem 'twitter-auth', :require => 'twitter_auth/engine', :git => 'git://github.com/func09/twitter-auth.git', :branch => 'rails_3'
 gem 'default_value_for', :git => 'git://github.com/FooBarWidget/default_value_for.git'
