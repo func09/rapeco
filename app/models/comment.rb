@@ -20,7 +20,6 @@ class Comment < ActiveRecord::Base
   before_validation_on_create :check_to_user
   
   # Scope
-  default_scope :order => 'created_at ASC'
   scope :recent, order('created_at DESC')
   
   # 自分から自分へのコメントは省く
