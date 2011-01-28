@@ -18,6 +18,12 @@ set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 namespace :deploy do
+
+  task :restart, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
+=begin
   task :start, :roles => :app, :except => { :no_release => true } do 
     run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
   end
@@ -33,6 +39,7 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     reload
   end
+=end
   desc "Copy shared config files to current application."
   task :copy_config_file, :roles => :app do
     run <<-CMD
