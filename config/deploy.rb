@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 set :rails_env, :production
 set :repository,  'git://github.com/func09/rapeco.git'
 set :application, "rapeco"
@@ -12,18 +14,23 @@ set :deploy_to, "/home/app/deploy/#{application}"
 role :web, "rapeco.jp"
 role :app, "rapeco.jp"
 role :db,  "rapeco.jp", :primary => true
+#role :web, "163.43.176.20"
+#role :app, "163.43.176.20"
+#role :db,  "163.43.176.20", :primary => true
 
 set :unicorn_binary, "bundle exec unicorn_rails"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
+set :bundle_gemfile,  "Gemfile"
+set :bundle_dir,      File.join(fetch(:shared_path), 'bundle')
+set :bundle_flags,    "--quiet"
+set :bundle_without,  [:development, :test]
+set :bundle_cmd,      "bundle" # e.g. "/opt/ruby/bin/bundle"
+set :bundle_roles,    {:except => {:no_release => true}} # e.g. [:app, :batch]
+
 namespace :deploy do
 
-  task :restart, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
-  end
-
-=begin
   task :start, :roles => :app, :except => { :no_release => true } do 
     run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
   end
@@ -39,7 +46,7 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     reload
   end
-=end
+
   desc "Copy shared config files to current application."
   task :copy_config_file, :roles => :app do
     run <<-CMD
@@ -75,7 +82,3 @@ end
 
 after 'deploy:update_code', 'deploy:copy_config_file'
 after "deploy:symlink", "deploy:update_crontab"
-
-after 'deploy:finalize_update' do
-  run "cd #{latest_release} && bundle install #{shared_path}/vendor --without development,test"
-end

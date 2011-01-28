@@ -21,12 +21,10 @@ class Comment < ActiveRecord::Base
   
   # Scope
   default_scope :order => 'created_at ASC'
-  named_scope :recent,
-    :order => 'created_at DESC'
+  scope :recent, order('created_at DESC')
   
   # 自分から自分へのコメントは省く
-  named_scope :exclude_self,
-    :conditions => ['user_id != to_user_id']
+  scope :exclude_self, where('user_id != to_user_id')
   
   
   def will_tweet?
