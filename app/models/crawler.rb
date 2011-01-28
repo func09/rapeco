@@ -1,3 +1,4 @@
+require 'photo_service'
 class Crawler
   
   class << self
@@ -6,6 +7,9 @@ class Crawler
 
     def logger
       RAILS_DEFAULT_LOGGER
+    end
+    
+    def check_mentions
     end
     
     # アップロード用のTwitterアカウントのmentionsをチェックして
