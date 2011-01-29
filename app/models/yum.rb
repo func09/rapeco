@@ -98,6 +98,8 @@ class Yum < ActiveRecord::Base
       text = truncate(text, :length => 140 - suffix.length )
       message = "#{text}#{suffix}"
       res = self.user.twitter.post('/statuses/update.json', 'status' => message)
+    rescue
+      logger.error "Error update tweet: #{yum}"
     end
   
 end
