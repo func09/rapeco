@@ -16,6 +16,7 @@ gem 'ezcrypto'
 gem 'haml'
 gem 'mime-types'
 gem 'backup'
+gem 'json_pure', '1.4.6'
 gem 'will_paginate', '~> 3.0.pre2'
 gem "friendly_id"
 gem "jquery-rails"

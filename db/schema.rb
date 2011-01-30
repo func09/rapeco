@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110127172902) do
+ActiveRecord::Schema.define(:version => 20110130033026) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "first_name",       :default => "",    :null => false
@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(:version => 20110127172902) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
 
   create_table "backup", :force => true do |t|
-    t.string   "storage"
     t.string   "trigger"
     t.string   "adapter"
     t.string   "filename"
+    t.string   "md5sum"
     t.string   "path"
     t.string   "bucket"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
