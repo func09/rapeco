@@ -1,7 +1,0 @@
-ENV['TWITPIC_API_KEY']       = 'd7f700354fe75ee8af44a1b60583daff'
-ENV['OAUTH_CONSUMER_KEY']    = 'vW7ZOCbvXTpblHm8L0aGcw'
-ENV['OAUTH_CONSUMER_SECRET'] = 'oMIlC9YUG09X4vcs8nxcHsukNi4Pi9PVzTIDMwU'
-ENV['ADMIN_USERNAME']        = 'admin'
-ENV['ADMIN_PASSWORD']        = 'admin'
-ENV['TWITTER_APP_USER']      = 'dev_func09'
-ENV['TWITTER_UPLOAD_USER']   = 'dev_func09'
