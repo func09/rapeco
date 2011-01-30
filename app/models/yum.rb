@@ -99,7 +99,7 @@ class Yum < ActiveRecord::Base
       message = "#{text}#{suffix}"
       res = self.user.twitter.post('/statuses/update.json', 'status' => message)
     rescue
-      logger.error "Error update tweet: #{yum}"
+      logger.error "Error update tweet: #{self}"
     end
   
 end
