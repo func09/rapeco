@@ -11,8 +11,7 @@ backup 'mysql-backup-s3' do
   storage :s3 do
     access_key_id     ENV['S3_ACCESS_KEY_ID']
     secret_access_key ENV['S3_SECRET_ACCESS_KEY']
-    # host              's3-ap-southeast-1.amazonaws.com' #the s3 location.  Defaults to us-east-1
-    bucket            '/rapeco/backups/db/'
+    bucket            'rapeco.jp/backup'
     use_ssl           true
   end
   
