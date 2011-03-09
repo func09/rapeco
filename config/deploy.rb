@@ -1,4 +1,6 @@
 require "bundler/capistrano"
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 set :rails_env, :production
 set :repository,  'git://github.com/func09/rapeco.git'
@@ -55,10 +57,10 @@ namespace :deploy do
       done;
     CMD
   end
-  desc "Update the crontab file"
-  task :update_crontab, :roles => :db do
-    run "cd #{release_path} && bundle exec whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
-  end
+  # desc "Update the crontab file"
+  # task :update_crontab, :roles => :db do
+  #   run "cd #{release_path} && bundle exec whenever --set environment=#{rails_env} --update-crontab #{application}_#{rails_env}"
+  # end
   
 end
 
@@ -81,4 +83,4 @@ namespace :deploy do
 end
 
 after 'deploy:update_code', 'deploy:copy_config_file'
-after "deploy:symlink", "deploy:update_crontab"
+# after "deploy:symlink", "deploy:update_crontab"

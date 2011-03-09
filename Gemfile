@@ -9,7 +9,7 @@ gem 'twitter-auth', :require => 'twitter_auth/engine', :git => 'git://github.com
 gem 'default_value_for', :git => 'git://github.com/FooBarWidget/default_value_for.git'
 
 gem 'forgery'
-gem 'whenever'
+gem 'whenever', :require => false
 gem 'json'
 gem 'oauth'
 gem 'ezcrypto'
