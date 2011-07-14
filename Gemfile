@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3', :require => nil
+gem 'rails', '3.0.8', :require => nil
 
 gem 'configatron'
 gem 'unicorn'
@@ -13,14 +13,14 @@ gem 'whenever', :require => false
 gem 'json'
 gem 'oauth'
 gem 'ezcrypto'
-gem 'haml'
+gem 'haml-rails'
+gem 'sass'
 gem 'mime-types'
 gem 'backup'
 gem 'json_pure', '1.4.6'
 gem 'will_paginate', '~> 3.0.pre2'
 gem "friendly_id"
 gem "jquery-rails"
-gem 'typus', :git => 'git://github.com/fesplugas/typus.git'
 gem 'rack-cache', :require => 'rack/cache'
 
 group :development, :test do
@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rcov'
   gem 'capybara'
   gem 'steak'
+  gem 'capistrano'
 end
 
 group :production do
