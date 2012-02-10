@@ -1,0 +1,74 @@
+# Typus Models Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+Comment:
+  fields:
+    default: comment, yum_id, user_id, to_user_id, yum, to_user, user
+    form: comment, yum_id, user_id, to_user_id, yum, to_user, user
+  order_by: 
+  relationships: to_user, user, yum
+  filters: created_at
+  search: 
+  application: Rapeco2
+
+KeyValueStore:
+  fields:
+    default: key, data
+    form: key, data
+  order_by: 
+  relationships: 
+  filters: created_at
+  search: 
+  application: Rapeco2
+
+Notice:
+  fields:
+    default: title, body, published_at, hidden, impotant
+    form: title, body, published_at, hidden, impotant
+  order_by: 
+  relationships: 
+  filters: created_at
+  search: title
+  application: Rapeco2
+
+NoticeMedia:
+  fields:
+    default: title, body, published_at, hidden, impotant
+    form: title, body, published_at, hidden, impotant
+  order_by: 
+  relationships: 
+  filters: created_at
+  search: title
+  application: Rapeco2
+
+NoticeNew:
+  fields:
+    default: title, body, published_at, hidden, impotant
+    form: title, body, published_at, hidden, impotant
+  order_by: 
+  relationships: 
+  filters: created_at
+  search: title
+  application: Rapeco2
+
+User:
+  fields:
+    default: twitter_id, login, access_token, access_secret, remember_token, remember_token_expires_at, unsignuped, name, location, description, profile_image_url, url, protected, profile_background_color, profile_sidebar_fill_color, profile_link_color, profile_sidebar_border_color, profile_text_color, profile_background_image_url, profile_background_tile, friends_count, statuses_count, followers_count, favourites_count, utc_offset, time_zone, yums_count, comments_count, receive_comments_count
+    form: twitter_id, login, access_token, access_secret, remember_token, remember_token_expires_at, unsignuped, name, location, description, profile_image_url, url, protected, profile_background_color, profile_sidebar_fill_color, profile_link_color, profile_sidebar_border_color, profile_text_color, profile_background_image_url, profile_background_tile, friends_count, statuses_count, followers_count, favourites_count, utc_offset, time_zone, yums_count, comments_count, receive_comments_count
+  order_by: 
+  relationships: comments, receive_comments, yums
+  filters: created_at
+  search: name
+  application: Rapeco2
+
+Yum:
+  fields:
+    default: photo_service, photo_url, view_count, yummy_count, yummy_point, not_yummy_image, report_count, uploaded_at, user_id, uid, text, comments_count, twitter_id, user
+    form: photo_service, photo_url, view_count, yummy_count, yummy_point, not_yummy_image, report_count, uploaded_at, user_id, uid, text, comments_count, twitter_id, user
+  order_by: 
+  relationships: comments, user
+  filters: created_at
+  search: 
+  application: Rapeco2
+

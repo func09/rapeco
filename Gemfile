@@ -23,6 +23,8 @@ gem "friendly_id"
 gem "jquery-rails"
 gem 'rack-cache', :require => 'rack/cache'
 
+gem 'typus'
+
 group :development, :test do
   gem 'annotate'
   gem 'sqlite3-ruby', :require => 'sqlite3'
