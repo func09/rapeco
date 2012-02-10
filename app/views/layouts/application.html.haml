@@ -52,11 +52,11 @@
         = link_to '使い方', help_path
         
       / begin impotant notice
-      - if impotant_notice
-        .impotant_notice
-          重要なお知らせ：
-          =raw impotant_notice.body
-          = "（#{impotant_notice.created_at.to_s(:simple_date)}）"
+      / - if impotant_notice
+      /   .impotant_notice
+      /     重要なお知らせ：
+      /     =raw impotant_notice.body
+      /     = "（#{impotant_notice.created_at.to_s(:simple_date)}）"
       / end impotant notice
       
       .mainMenuBox
